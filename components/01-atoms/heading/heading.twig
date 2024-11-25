@@ -1,0 +1,22 @@
+{% set attributes = attributes|default(create_attribute())
+  .addClass(['u-leading-none', 'sm:u-leading-tight'])
+  .addClass(classes)
+  .removeClass(remove_classes) %}
+
+{% set level = level|default(1) %}
+
+<h{{ level }} {{ attributes }}>
+  {% if url %}
+    {% include "@atoms/link/link.twig" with {
+      content: content,
+      url: url,
+      new_window: new_window,
+      attributes: link_attributes,
+      classes: link_classes,
+    } only %}
+  {% else %}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+  {% endif %}
+</h{{ level }}>

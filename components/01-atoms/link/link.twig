@@ -1,0 +1,33 @@
+{% set attributes = attributes|default(create_attribute())
+  .addClass(classes)
+  .addClass(['u-text-burnt-orange'])
+  .removeClass(remove_classes)
+  .setAttribute('href', url) %}
+
+{% set link_attributes = link_attributes|default(create_attribute()) %}
+
+{% if new_window %}
+  {% set link_attributes = link_attributes.setAttribute('target', '_blank') %}
+{% endif %}
+
+{% for attribute, value in link_attributes %}
+  {% set attributes = attributes.setAttribute(attribute, value) %}
+  {% if attribute == 'target' and value == '_blank' %}
+    {% set attributes = attributes.setAttribute('rel', 'noopener') %}
+  {% endif %}
+{% endfor %}
+
+{# Don't delete the comments! They're required to remove whitespace in the link #}
+<a{{ attributes }}>{# -#}
+  {% apply spaceless %}
+    {% if itemscope is defined %}
+      <span itemprop="name">
+    {% endif %}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
+    {% if itemscope is defined %}
+      </span>
+    {% endif %}
+  {% endapply %}
+</a>
