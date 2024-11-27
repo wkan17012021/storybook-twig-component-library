@@ -1,6 +1,5 @@
 node_modules
 npm-debug.log*
-package-lock.json
 /var/cache/twig/
 storybook-static/
 .env
