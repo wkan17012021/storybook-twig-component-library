@@ -1,4 +1,5 @@
 import { defineConfig } from "vite"
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import twig from 'vite-plugin-twig-drupal';
 import { join } from "node:path"
 import { fileURLToPath } from 'url';
@@ -13,6 +14,14 @@ const __dirname = dirname(__filename);
 export default defineConfig({
   base: '/storybook-twig-component-library/',
   plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'assets/icons/icons.svg', // Source file
+          dest: 'assets/icons', // Destination in the build output
+        },
+      ],
+    }),
     // Other vite plugins.
     twig({
       namespaces: {
