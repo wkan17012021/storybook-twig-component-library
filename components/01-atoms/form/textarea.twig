@@ -1,0 +1,15 @@
+{% set attributes = attributes|default(create_attribute()) %}
+{% set wrapper_attributes = wrapper_attributes|default(create_attribute()) %}
+
+{% set classes = [
+  'u-block',
+  'u-bg-neutral-grey',
+  'u-px-4',
+  'u-py-2',
+  'u-font-light',
+  'u-min-h-[140px]',
+  'u-max-w-full',
+] %}
+<div{{ wrapper_attributes }}>
+  <textarea{{ attributes.addClass(classes) }}>{{ value }}</textarea>
+</div>

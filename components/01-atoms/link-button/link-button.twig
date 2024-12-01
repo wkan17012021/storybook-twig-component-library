@@ -1,0 +1,85 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set type = type|default('primary') %}
+{% set bg_colour = bg_colour|default('u-bg-ochre') %}
+{% set icon_id = icon_id|default('chevron') %}
+
+{% set classes = [
+  'button',
+  'u-px-3',
+  'u-py-2',
+  'u-text-sm',
+] %}
+
+{% if type == 'primary' %}
+  {% set bg_colour = 'u-bg-ochre' %}
+  {% set classes = classes|merge([
+    'u-text-black',
+    'hover:u-bg-white',
+  ]) %}
+{% elseif type == 'primary2' %}
+  {% set bg_colour = 'u-bg-ochre' %}
+  {% set classes = classes|merge([
+    'u-text-black',
+    'hover:u-bg-burnt-orange',
+  ]) %}
+{% elseif type == 'secondary' %}
+  {% set bg_colour = 'u-bg-dark-blue' %}
+  {% set classes = classes|merge([
+    'u-text-white',
+    'hover:u-bg-burnt-orange',
+  ]) %}
+{% endif %}
+
+{% set classes = classes|merge([bg_colour]) %}
+
+{# Set the display type for the link #}
+{% set layout_classes = 'u-inline-block' %}
+{% if content and icon_id %}
+  {% set layout_classes = [
+    'u-inline-flex',
+    'u-items-center',
+    'u-gap-2',
+  ] %}
+{% endif %}
+
+{% set attributes = attributes
+  .addClass(classes)
+  .addClass(layout_classes)
+  .removeClass(remove_classes)
+  .setAttribute('aria-label', aria_label) %}
+
+{% embed '@atoms/link/link.twig' with {
+  attributes: attributes,
+  remove_classes: 'u-text-burnt-orange',
+  icon_id: icon_id,
+  icons_url: icons_url,
+  icon_width: icon_width,
+  content: content,
+  type: type,
+  url: url,
+  alt: content,
+  new_window: new_window,
+} only %}
+
+  {% block content %}
+
+    {% if type != 'icon-only'  %}
+      {{ content }}
+    {% endif %}
+
+    {% if icon_id %}
+      {% include '@atoms/icon/icon.twig' with {
+        classes: [
+          'u-text-inherit',
+          'u-fill-current'
+        ],
+        id: icon_id,
+        icons_url: icons_url,
+        width: icon_width,
+        alt: content,
+      } only %}
+    {% endif %}
+
+  {% endblock %}
+
+{% endembed %}

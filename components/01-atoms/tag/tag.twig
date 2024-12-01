@@ -1,0 +1,40 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set featured = featured|default(false) %}
+{% set border_colour = border_colour|default('u-border-black') %}
+
+{% set classes = [
+  'tag',
+  'u-inline-block',
+  'u-font-black',
+] %}
+
+{% if featured %}
+  {% set classes = classes|merge([
+    'u-bg-magenta',
+    'u-px-3',
+    'u-py-1',
+    'u-leading-relaxed',
+  ]) %}
+{% else %}
+  {% set classes = classes|merge([
+    'u-px-2',
+    'u-py-1',
+    'u-text-xs',
+    'u-border-2',
+    border_colour,
+  ]) %}
+{% endif %}
+
+{% set content %}
+  <span{{ attributes.addClass(classes) }}>{{ text }}</span>
+{% endset %}
+
+{% if url %}
+  {% include '@atoms/link/link.twig' with {
+    url: url,
+    content: content,
+    remove_classes: 'u-text-burnt-orange',
+  } only %}
+{% else %}
+  {{ content }}
+{% endif %}

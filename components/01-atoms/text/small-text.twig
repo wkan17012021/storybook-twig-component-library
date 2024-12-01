@@ -1,0 +1,8 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+
+{# @todo this might need a block (div) wrapper #}
+<small{{ attributes }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</small>

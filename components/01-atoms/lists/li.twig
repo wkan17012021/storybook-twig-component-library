@@ -1,0 +1,7 @@
+{% set attributes = attributes|default(create_attribute()) %}
+
+<li{{ attributes }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</li>

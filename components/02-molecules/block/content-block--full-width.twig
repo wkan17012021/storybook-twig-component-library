@@ -1,0 +1,8 @@
+{% set content %}
+  {% include '@molecules/block/block.twig' %}
+{% endset %}
+
+{% include '@molecules/section/section.twig' with {
+  add_padding_classes: false,
+  remove_container_classes: '2xl:u-w-[1200px]',
+} %}

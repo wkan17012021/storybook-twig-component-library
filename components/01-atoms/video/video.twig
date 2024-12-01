@@ -1,0 +1,32 @@
+{% set attributes = attributes|default(create_attribute())
+  .addClass([
+    'u-w-full',
+    'u-h-auto',
+  ])
+  .addClass(classes)
+  .setAttribute('controls', true) %}
+
+{% set responsive = responsive|default(true) %}
+{% set type = type|default('mp4') %}
+
+{% set source_attributes = create_attribute().setAttribute('type', 'video/'~type) %}
+
+{% if not responsive %}
+  {% set attributes = attributes.removeClass('u-w-full').addClass('u-max-w-full') %}
+{% endif %}
+
+{% if poster %}
+  {% set attributes = attributes.setAttribute('poster', poster) %}
+{% endif %}
+
+{% if src %}
+  {% set source_attributes = source_attributes.setAttribute('src', src) %}
+{% endif %}
+
+<video{{ attributes }}>
+  <source{{ source_attributes }}>
+  {% include '@atoms/text/small-text.twig' with {
+    content: 'Playback of this video is not supported by your browser.'|t,
+  } only %}
+</video>
+

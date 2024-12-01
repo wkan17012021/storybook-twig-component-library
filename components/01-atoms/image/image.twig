@@ -1,0 +1,27 @@
+{% set attributes = attributes|default(create_attribute())
+  .addClass([
+    'u-w-full',
+    'u-h-auto',
+  ])
+  .addClass(classes)
+  .removeClass(remove_classes) %}
+
+{% set responsive = responsive ?? true %}
+
+{% if not responsive %}
+  {% set attributes = attributes.removeClass('u-w-full').addClass('u-max-w-none') %}
+{% endif %}
+
+{% if src is not empty %}
+  {% set attributes = attributes.setAttribute('src', src) %}
+{% endif %}
+
+{% if alt is defined %}
+  {% set attributes = attributes.setAttribute('alt', alt) %}
+{% endif %}
+
+{% if title is not empty %}
+  {% set attributes = attributes.setAttribute('title', title) %}
+{% endif %}
+
+<img{{ attributes }}/>

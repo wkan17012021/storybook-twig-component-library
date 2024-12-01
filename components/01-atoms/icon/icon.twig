@@ -1,0 +1,21 @@
+{% set icons_url = icons_url|default('/themes/custom/mytheme/assets/icons/icons.svg') %}
+{% set id = 'icon-'~id %}
+{% set width = width|default('40px') %}
+
+{% if id == 'icon-chevron' %}
+  {% set width = '14px' %}
+{% endif %}
+
+{% set height = height|default(width) %}
+{% set attributes = attributes|default(create_attribute())
+  .addClass('icon')
+  .addClass(classes)
+  .setAttribute('aria-hidden', 'true')
+  .setAttribute('style', 'width:'~width~';height:'~height) %}
+
+<svg{{ attributes }}>
+  {% if alt %}
+    <title>{{ alt }}</title>
+  {% endif %}
+  <use xlink:href="{{ icons_url }}?#{{ id }}"></use>
+</svg>

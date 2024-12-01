@@ -1,0 +1,7 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+
+<p{{ attributes }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</p>
