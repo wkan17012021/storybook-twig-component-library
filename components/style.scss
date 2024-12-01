@@ -1,0 +1,16 @@
+// Modularscale config.
+// This config has been set to achieve the required font sizes for the headings in typi.scss.
+$modularscale: (
+  base: 18px,
+  ratio: 1.3
+);
+
+@use "tailwind";
+@use "tailwind-variables" as *;
+
+// Import component CSS.
+@use "00-base/index" as base;
+@use "01-atoms/index" as atoms;
+@use "02-molecules/index" as molecules;
+@use "03-organisms/index" as organisms;
+

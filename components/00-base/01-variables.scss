@@ -1,0 +1,22 @@
+@use "../_tailwind-variables" as tailwind;
+
+$breakpoints: (
+  sm: tailwind.$screen-sm,
+  md: tailwind.$screen-md,
+  lg: tailwind.$screen-lg,
+  xl: tailwind.$screen-xl,
+  xxl: tailwind.$screen-2xl
+);
+
+// Line-heights.
+$lh: (
+  // Line-height: 64px
+  0: 64px,
+  // Line-height: 44px
+  1: 44px,
+  // Line-height: 35px
+  2: 35px,
+  // Line-height: 24px
+  3: 1.35,
+  4: 1,
+);

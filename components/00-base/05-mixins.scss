@@ -1,0 +1,14 @@
+// Breakpoints mixin.
+@use "./01-variables.scss" as br;
+
+@mixin breakpoint($size) {
+  $breakpoint: map-get(br.$breakpoints, $size);
+
+  @if $breakpoint {
+    @media (min-width: #{$breakpoint}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint #{$size} not found in the \$breakpoints map.";
+  }
+}
