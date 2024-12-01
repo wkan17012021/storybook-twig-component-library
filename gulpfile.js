@@ -32,12 +32,6 @@ function spriteIcons() {
     .pipe(cheerio({
       run: function ($, file) {
         $('svg').addClass('hide');
-        $('use').each(function () {
-          const href = $(this).attr('xlink:href');
-          if (href) {
-            $(this).attr('xlink:href', href.replace('../../../assets/', '/assets/'));
-          }
-        });
       },
       parserOptions: {xmlMode: true},
     }))

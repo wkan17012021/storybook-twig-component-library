@@ -27,7 +27,7 @@ const config = {
   },
   env: (config) => ({
     ...config,
-    STORYBOOK_ICONS_URL: '/storybook-twig-component-library/assets/icons/icons.svg',
+    STORYBOOK_ICONS_URL: './assets/icons/icons.svg',
   }),
 };
 export default config;
