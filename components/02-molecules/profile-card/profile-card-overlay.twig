@@ -1,0 +1,73 @@
+{% set attributes = attributes|default(create_attribute())
+  .addClass(classes)
+  .addClass([
+  'profile-card-overlay',
+  'u-hidden',
+  'u-absolute',
+  'u-inset-0',
+  'u-z-30',
+  'u-bg-green',
+  'u-p-2',
+  'sm:u-p-8',
+  'u-overflow-x-hidden',
+  'u-overflow-y-auto',
+  'u-text-black',
+  'u--left-2',
+  'u-w-[calc(100%+1rem)]',
+  'u-max-w-[783px]',
+  'sm:u--left-8',
+  'sm:u-w-[calc(100%+4rem)]',
+  'lg:u-w-[83%]',
+  'lg:u-top-auto',
+  'lg:u-left-auto',
+]) %}
+
+<div{{ attributes }}>
+  <div class="u-flex u-flex-wrap md:u-gap-x-[8%]">
+    <div class="md:u-flex-col md:u-w-[24%]">
+      {% include '@atoms/image/image.twig' with {
+        src: image,
+        alt: title,
+        classes: [
+          'u-mb-4',
+          'u-w-[70%]',
+          'md:u-w-[100%]',
+        ],
+        responsive: false,
+      } only %}
+      {% include '@atoms/heading/heading.twig' with {
+        level: 4,
+        content: title,
+        classes: 'u-leading-tight',
+      } only %}
+      {% include '@atoms/text/paragraph.twig' with {
+        content: job,
+        classes: 'u-mb-4',
+      } only %}
+    </div>
+    <div class="u-mb-4 md:u-mb-0 md:u-w-[51%]">
+      {{ bio }}
+    </div>
+  </div>
+  {% include '@molecules/social-links/social-links.twig' with {
+    icons_url: icons_url,
+    links: social_links,
+    bg_colour: 'u-bg-ochre',
+  } only %}
+  {% include '@atoms/button/button.twig' with {
+    icons_url: icons_url,
+    icon_id: 'close',
+    icon_width: '25px',
+    classes: [
+      'profile-card-overlay__close',
+      'u-cursor-pointer',
+      'u-absolute',
+      'u-top-[10px]',
+      'u-right-[10px]',
+      'sm:u-top-[30px]',
+      'sm:u-right-[36px]',
+      'u-bg-transparent',
+      'u-border-none',
+    ],
+  } only %}
+</div>

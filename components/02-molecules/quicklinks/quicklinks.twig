@@ -1,0 +1,15 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set attributes = attributes.addClass([
+  'quicklinks',
+  'u-py-2',
+  'u-px-4',
+  'u-bg-light-blue',
+]) %}
+
+<div{{ attributes }}>
+  {{ title }}
+  <div class="u-mb-4 u-flex u-flex-col">
+    {{ link_one }}
+    {{ link_two }}
+  </div>
+</div>

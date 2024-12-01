@@ -1,0 +1,41 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set attributes = attributes.addClass([
+  'card--profile',
+  'u-text-black',
+  'u-relative',
+  'u-overflow-hidden',
+  'u-min-w-[220px]',
+  'u-w-full',
+  'u-min-h-[410px]',
+  'md:u-min-h-[556px]',
+  'u-bg-top',
+]) %}
+
+{% if image %}
+  {% set attributes = attributes.addClass([
+    'u-bg-top',
+    'u-bg-cover',
+  ]).setAttribute('style','background-image:url('~image~')') %}
+{% endif %}
+
+<div{{ attributes }}>
+  <div class="card__title u-min-h-[25%] u-absolute u-bottom-0 u-left-0 u-right-0 u-p-6 u-bg-green u-opacity-85">
+    {% include '@atoms/heading/heading.twig' with {
+      classes: 'u-leading-tight',
+      level: 4,
+      content: title,
+    } only %}
+    {% include '@atoms/text/paragraph.twig' with {
+      content: job,
+    } only %}
+  </div>
+</div>
+
+{% include '@molecules/profile-card/profile-card-overlay.twig' with {
+  image: image,
+  title: title,
+  job: job,
+  bio: bio,
+  social_links: social_links,
+  icons_url: icons_url,
+} only %}
