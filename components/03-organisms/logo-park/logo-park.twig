@@ -1,0 +1,45 @@
+{{ attach_library('mytheme/logo-park') }}
+
+{% set content %}
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {{ content }}
+    </div>
+  </div>
+  <div
+      class="swiper-nav md:u-mr-[79px] md:u-mt-4 md:u-flex md:u-flex-row-reverse md:u-items-center md:u-justify-between xl:u-m-0 xl:u-absolute xl:u-top-9 xl:u-right-9 xl:u-flex-col xl:u-items-end xl:u-gap-12">
+    <div class="swiper-buttons u-hidden md:u-flex md:u-flex-nowrap md:u-gap-4">
+      {% include '@atoms/button/button.twig' with {
+        icon_only: true,
+        classes: [
+          'swiper-prev',
+          'u-rotate-180',
+          'u-w-[34px]',
+          'u-h-[34px]',
+        ],
+        icon_id: 'chevron',
+        icons_url: icons_url,
+        bg_colour: bg_colour == 'u-bg-ochre'? 'u-bg-burnt-orange':'u-bg-ochre',
+      } only %}
+      {% include '@atoms/button/button.twig' with {
+        classes: [
+          'swiper-next',
+          'u-w-[34px]',
+          'u-h-[34px]',
+        ],
+        icon_id: 'chevron',
+        icons_url: icons_url,
+        bg_colour: bg_colour == 'u-bg-ochre'? 'u-bg-burnt-orange':'u-bg-ochre',
+      } only %}
+    </div>
+    <div class="swiper-paging u-text-center u-mt-4 md:u-text-left md:u-mt-0"></div>
+  </div>
+{% endset %}
+
+{% include '@molecules/section/section.twig' with {
+  heading: title,
+  body: body,
+  indent_bg: true,
+  classes: ['logo-park'],
+  header_classes: ['xl:u-min-h-[8.5rem]'],
+} %}

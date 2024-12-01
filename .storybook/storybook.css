@@ -1,0 +1,22 @@
+/* CSS that is required in Storybook only */
+
+/* Styles to mimic Swiper rendering */
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  box-sizing: content-box;
+  transform: translate3d(0, 0, 0);
+}
+
+.swiper-wrapper > div {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: block;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
