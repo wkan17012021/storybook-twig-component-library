@@ -1,0 +1,32 @@
+{% set content %}
+  {% include '@molecules/cta/cta-with-image.twig' with left_cta|merge({
+    alignment: 'left',
+    content_wrapper_classes: ['2xl:u-pl-[calc((100vw-1200px)/2)]'],
+  }) only %}
+
+  {% include '@molecules/cta/cta-with-image.twig' with right_cta|merge({
+    alignment: 'right',
+    cta_classes: ['u-mt-7', 'xl:u-mt-0', 'xl:u-pt-12'],
+    media_classes: ['u-h-[22rem]'],
+    remove_media_classes: ['u-h-[25rem]'],
+    content_wrapper_classes: ['2xl:u-pr-[calc((100vw-1200px)/2)]'],
+  }) only %}
+{% endset %}
+
+{% include '@molecules/section/section.twig' with {
+  classes: [
+    "md:u-bg-[url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTUyIiBoZWlnaHQ9IjYwMiIgdmlld0JveD0iMCAwIDU1MiA2MDIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik00NjcuMTc5IDQ2MC44MTZDMzI5LjAxNSA1MDQuODg2IDE0MS42MjYgNDE0Ljk3NyAtNy43NDUzMiAxODkuNjYzQy01Ni41OTIzIDIwMS45NTUgLTEwMC45MTUgMjIxLjMxMSAtMTM4LjE4NCAyNDUuOTI2Qy0yMi44NDcgNDM5LjEwNyAxMzkuNDg4IDU5MS45NDggMzMxLjA1MiA1ODQuNjkxQzM1NS43MzkgNTgzLjc1NiAzODMuOTI5IDU3OC40MzQgNDExLjM2NCA1NjYuODk5QzQ0Ny4xMzQgNTM3LjMxNCA0NjMuNjU2IDUwNC41OTIgNDY3LjE3OSA0NjAuODE2WiIgc3Ryb2tlPSIjMDA1QjZGIiBzdHJva2Utd2lkdGg9IjAuNzUiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPgo8cGF0aCBkPSJNNTQyLjc0MSAzNDAuNTA2QzUzNS45OTUgMTcwLjYxMSAzOTEuMTUzIDUuMjMwMzQgMTA1LjQ3MyAxNi4wNTI3Qy00NC4zNDM0IDIxLjcyODIgLTI3MC40NTQgMTA3LjkxMSAtMjYxLjQ1IDM3MS42ODlMLTI2MS4yNTEgMzc2LjcwOUMtMjYxLjAxMiAzODIuNzIxIC0yNjAuNiAzODguODM3IC0yNjAuMDcyIDM5NS4wMDVDLTI1MC43NTEgMzYwLjQ1NiAtMjI3Ljc2NyAzMjUuMTY4IC0xOTUuNzI1IDI5Mi45MDhDLTE3OC45NjcgMjc2LjA4NyAtMTYwLjAyMSAyNjAuMjMyIC0xMzguMjQxIDI0NS45MjhDLTEwMC45NyAyMjEuMzY5IC01Ni42NDY5IDIwMi4wMTIgLTcuODAyMDcgMTg5LjY2NUMyMS4xNTkgMTgyLjM4MSA1MS4yMDY5IDE3Ni44MjMgODMuMDY4NCAxNzUuNjE2QzMyNy43OTIgMTY2LjM0NSA0NjIuNTY1IDI4Ni4yIDQ2OC4zODcgNDMyLjgxN0M0NjguNzkgNDQyLjk2NiA0NjcuODM5IDQ1MS43ODYgNDY3LjEyNSA0NjAuODczQzQ2My42MDIgNTA0LjY0OSA0NDcuMDc5IDUzNy4zNzEgNDExLjMwOSA1NjYuOTU2QzUwNC42NTggNTMxLjI2OCA1NDcuMDIxIDQ0OC4yODkgNTQyLjc0MSAzNDAuNTA2WiIgc3Ryb2tlPSIjMDA1QjZGIiBzdHJva2Utd2lkdGg9IjAuNzUiIHN0cm9rZS1taXRlcmxpbWl0PSIxMCIvPgo8L3N2Zz4K)]",
+    'md:u-bg-no-repeat',
+    'md:u-bg-left-bottom',
+    'md:u-pb-16',
+  ],
+  add_padding_classes: false,
+  content_classes: [
+    'u-flex',
+    'u-flex-col',
+    'xl:u-flex-row',
+    'xl:u-items-start',
+  ],
+  remove_container_classes: ['2xl:u-w-[1200px]'],
+} %}
+

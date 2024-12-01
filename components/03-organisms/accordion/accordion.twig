@@ -1,0 +1,7 @@
+{{ attach_library('mytheme/accordion') }}
+
+{% set wrapper_text_colour = bg_colour == 'u-bg-dark-blue' ? 'u-text-white':'' %}
+
+{% include '@molecules/section/section.twig' with {
+  classes: ['accordion'],
+} %}

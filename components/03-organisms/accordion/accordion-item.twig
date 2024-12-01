@@ -1,0 +1,45 @@
+{% set id = 'accordionItem'~id %}
+{% set content_attributes = create_attribute()
+  .setAttribute('id', id)
+  .addClass(
+  'u-hidden',
+  'u-p-4',
+  bg_colour == 'u-bg-dark-blue' ? 'u-text-white':''
+) %}
+<div class="accordion-item u-mb-4">
+  <div class="accordion-item__header">
+    {% embed '@atoms/heading/heading.twig' with {
+      level: 5,
+      content: title,
+      icons_url: icons_url,
+      id: id,
+      classes: 'u-m-0',
+    } only %}
+      {% block content %}
+        {% include '@atoms/button/button.twig' with {
+          attributes: create_attribute().setAttribute('aria-expanded', 'false').setAttribute('aria-controls', id),
+          classes: [
+            'accordion-item__button',
+            'u-w-full',
+            'u-justify-between',
+            'u-pt-2.5',
+            'u-pb-3',
+            'u-text-left',
+          ],
+          bg_colour: 'u-bg-mid-blue',
+          icon_id: 'chevron',
+          icons_url: icons_url,
+          icon_classes: [
+            'u-rotate-90',
+            'u-transition-transform',
+            'u-duration-500',
+          ],
+          content: content,
+        } only %}
+      {% endblock %}
+    {% endembed %}
+  </div>
+  <div{{ content_attributes }}>
+    {{ content }}
+  </div>
+</div>

@@ -1,0 +1,44 @@
+{{ attach_library('mytheme/cta-carousel') }}
+
+{% set content %}
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {{ content }}
+    </div>
+  </div>
+  <div
+      class="swiper-nav u-mt-6 md:u-px-7 md:u-flex md:u-flex-row-reverse md:u-items-center md:u-justify-between lg:u-px-0">
+    <div class="swiper-buttons u-hidden md:u-flex md:u-flex-nowrap md:u-gap-4">
+      {% set swiper_buttons = [
+        {
+          direction: 'prev',
+          extra_classes: ['swiper-prev', 'u-rotate-180']
+        },
+        {
+          direction: 'next',
+          extra_classes: ['swiper-next']
+        }
+      ] %}
+
+      {% for button in swiper_buttons %}
+        {% include '@atoms/button/button.twig' with {
+          icon_only: true,
+          classes: button.extra_classes|merge(['u-w-[34px]', 'u-h-[34px]']),
+          icon_id: 'chevron',
+          icons_url: icons_url,
+          bg_colour: 'u-bg-ochre',
+        } only %}
+      {% endfor %}
+
+    </div>
+    <div class="u-text-center">
+      <div class="swiper-paging"></div>
+    </div>
+  </div>
+{% endset %}
+
+{% include '@molecules/section/section.twig' with {
+  classes: ['cta-carousel'],
+  add_padding_classes: false,
+  content_wrapper_classes: ['lg:u-px-9', 'xxl:u-px-0'],
+} %}
