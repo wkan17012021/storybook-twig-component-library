@@ -1,0 +1,71 @@
+{{ attach_library('mytheme/gallery') }}
+
+{% set button_classes = [
+  'u-w-[34px]',
+  'u-h-[34px]',
+  'u-absolute',
+  'u-z-10',
+  'u-top-1/2',
+  '-u-translate-y-1/2',
+] %}
+
+{% set content %}
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {{ images }}
+    </div>
+    <div class="swiper-buttons u-hidden md:u-block">
+      {% include '@atoms/button/button.twig' with {
+        icon_only: true,
+        classes: [
+          'swiper-prev',
+          'u-rotate-180',
+          'u-left-0',
+        ]|merge(button_classes),
+        icon_id: 'chevron',
+        icons_url: icons_url,
+        bg_colour: bg_colour == 'u-bg-ochre'? 'u-bg-burnt-orange':'u-bg-ochre',
+      } only %}
+      {% include '@atoms/button/button.twig' with {
+        classes: [
+          'swiper-next',
+          'u-right-0',
+        ]|merge(button_classes),
+        icon_id: 'chevron',
+        icons_url: icons_url,
+        bg_colour: bg_colour == 'u-bg-ochre'? 'u-bg-burnt-orange':'u-bg-ochre',
+      } only %}
+    </div>
+  </div>
+  <div
+      class="u-text-center u-mt-4 md:u-text-left md:!u-absolute md:!u-left-7 md:!u-bottom-14 xl:!u-top-28 xl:!u-right-9 xl:!u-left-auto xl:!u-bottom-auto">
+    <div
+        class="swiper-paging"></div>
+  </div>
+{% endset %}
+
+{% include '@molecules/section/section.twig' with {
+  heading: title,
+  body: body,
+  indent_bg: true,
+  classes: ['gallery'],
+  content_wrapper_classes: [
+    'u-flex-col-reverse',
+    'md:u-flex-row',
+    'md:u-gap-8',
+    'md:u-pt-14',
+    'md:u-pb-24',
+    'lg:u-pt-14',
+    'lg:u-pb-24',
+    'xl:u-flex-col',
+  ],
+  remove_content_wrapper_classes: ['md:u-pt-6', 'lg:u-pt-8'],
+  content_classes: [
+    '-u-mt-3',
+    '-u-mx-[15px]',
+    'md:u-m-0',
+    'md:u-w-full',
+  ],
+  header_classes: ['xl:u-min-h-[8.5rem]'],
+  remove_header_classes: ['md:u-mr-[64px]'],
+} %}

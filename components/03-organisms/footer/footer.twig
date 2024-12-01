@@ -1,0 +1,182 @@
+{% set social_links = {
+  facebook: 'https://www.facebook.com/',
+  x: 'https://x.com/',
+  instagram: 'https://www.instagram.com/',
+  linkedin: 'https://www.linkedin.com/',
+  youtube: 'https://www.youtube.com/',
+  tiktok: 'https://www.tiktok.com/',
+} %}
+
+{% set section1_content %}
+
+  {% set logo_wrapper_classes = [
+    'logo-socials-wrapper',
+    'u-flex',
+    'u-flex-col',
+    'u-gap-4',
+    'sm:u-gap-8',
+    'u-items-start',
+    'lg:u-flex-row',
+    'lg:u-justify-between',
+    'lg:u-h-[90px]',
+    'lg:u-pt-1',
+  ] %}
+
+  <div{{ create_attribute().addClass(logo_wrapper_classes) }}>
+    {% embed '@atoms/link/link.twig' with {
+      url: '/',
+      remove_classes: 'u-text-burnt-orange',
+      logo_src: logo_src,
+    } only %}
+      {% block content %}
+        {% include '@atoms/image/image.twig' with {
+          alt: 'Travel',
+          classes: ['u-h-[40px]', 'lg:u-h-[45px]'],
+          remove_classes: ['u-h-auto'],
+          responsive: false,
+          src: logo_src,
+        } only %}
+      {% endblock %}
+    {% endembed %}
+
+    {% include '@molecules/social-links/social-links.twig' with {
+      links: social_links,
+      bg_colour: 'u-bg-ochre',
+      icons_url: icons_url,
+    } only %}
+  </div>
+{% endset %}
+
+{% set section2_content %}
+  {# @todo create address atom #}
+  <address class="u-not-italic u-flex u-flex-col u-gap-4 u-text-sm">
+    {% include '@atoms/heading/heading.twig' with {
+      content: 'Contact us'|t,
+      classes: 'u-mb-0',
+      level: 6,
+    } only %}
+    <div>{{ 'Digital Depot, The Digital Hub<br>Roe Lane, Off Thomas Street, Dublin D08 TCV4'|t }}</div>
+    {# @todo create DL atom #}
+    <dl>
+      <dt class="u-float-left u-font-semibold u-mr-1">{{ 'Tel: '|t }}</dt>
+      <dd class="u-float-left">
+        {% include '@atoms/link/link.twig' with {
+          content: '+44 (0)20 1234 5678',
+          url: 'tel:+4402012345678',
+          remove_classes: ['u-text-burnt-orange'],
+        } only %}
+      </dd>
+      <dt class="u-float-left u-clear-left u-font-semibold u-mr-1">{{ 'Email: '|t }}</dt>
+      <dd class="u-float-left">
+        {% include '@atoms/link/link.twig' with {
+          content: 'information@website.com',
+          url: 'mailto:information@website.com',
+          remove_classes: ['u-text-burnt-orange'],
+          classes: ['u-underline', 'u-break-words'],
+        } only %}
+      </dd>
+    </dl>
+  </address>
+  <div class="u-flex u-flex-col u-gap-4 u-text-sm">
+    {% include '@atoms/heading/heading.twig' with {
+      content: 'Quicklinks'|t,
+      classes: 'u-mb-0',
+      remove_classes: 'sm:u-leading-tight',
+      level: 6,
+    } only %}
+    {{ quicklinks }}
+  </div>
+{% endset %}
+
+{% set section4_content %}
+  {% include '@atoms/text/small-text.twig' with {
+    content: 'Travel Co Limited is a charity registered in England and Wales (Reg.No.1234567) and a company limited by guarantee (Reg.No.12345678). | VAT Reg No. : GB 123 4567 89'|t,
+    classes: ['u-text-xs', 'lg:u-text-balance', 'u-font-light', 'u-leading-3'],
+  } only %}
+{% endset %}
+
+<footer class="u-relative">
+  {# Newsletter CTA #}
+  {% include '@molecules/section/section.twig' with {
+    title: 'Subscribe to our newsletter'|t,
+    content: "You’ll receive our monthly newsletter, and at times, we’ll email you about announcements."|t,
+    bg_colour: 'u-bg-ochre',
+    heading_level: 3,
+    heading_classes: ['u-font-bold', 'u-leading-tight'],
+    remove_heading_classes: 'u-leading-none',
+    cta_button: {
+      url: '#',
+      content: 'Subscribe'|t,
+      type: 'secondary',
+    },
+    classes: [
+      'lg:u-max-w-[415px]',
+      'u-static',
+      'lg:u-absolute',
+      'lg:u-z-10',
+      'lg:u-bottom-0',
+      'lg:u-right-0',
+      'xl:u-right-[calc((100vw-1200px)/2)]',
+      'lg:u-p-3',
+    ],
+    remove_container_classes: '2xl:u-w-[1200px]',
+    remove_sub_container_classes: ['u-gap-7', 'md:u-gap-8'],
+    sub_container_classes: ['u-gap-5', 'md:u-gap-5'],
+    content_classes: [
+      'u-relative',
+      'u-z-[2]',
+      'u-font-black'
+    ],
+    tag: 'div',
+    icons_url: icons_url,
+  } only %}
+
+  {# Logo and social links #}
+  {% include '@molecules/section/section.twig' with {
+    tag: 'div',
+    content: section1_content,
+    classes: [
+      'u-relative',
+      'u-z-[11]',
+      'xl:u-absolute',
+      'xl:u-left-0',
+      'xl:u-pl-[calc((100vw-1200px)/2)]',
+    ],
+    remove_container_classes: '2xl:u-w-[1200px]',
+    content_wrapper_classes: [
+      'xl:u-bg-white',
+      'lg:u-pt-0',
+      'lg:u-pb-0',
+      'xl:u-w-[calc((100vw-1200px)/2+1028px)]',
+    ],
+    remove_content_wrapper_classes: ['lg:u-pt-8'],
+  } only %}
+
+  {# Contact us and quicklinks #}
+  {% include '@molecules/section/section.twig' with {
+    tag: 'div',
+    content: section2_content,
+    bg_colour: 'u-bg-light-blue',
+    use_columns: true,
+    container_classes: ['xl:u-pt-[90px]'],
+    content_wrapper_classes: ['lg:u-pt-12', 'lg:u-pb-12'],
+  } only %}
+
+  {# Terms and conditions links #}
+  {% include '@molecules/section/section.twig' with {
+    tag: 'div',
+    content: legal_links,
+    bg_colour: 'u-bg-mid-blue',
+    content_wrapper_classes: ['md:u-py-4', 'lg:u-py-4'],
+    remove_content_wrapper_classes: ['md:u-pt-6', 'lg:u-pt-8'],
+  } only %}
+
+  {# Company statement #}
+  {% include '@molecules/section/section.twig' with {
+    tag: 'div',
+    content: section4_content,
+    content_wrapper_classes: ['lg:u-pt-4', 'lg:u-pb-4'],
+    sub_container_classes: ['u-min-w-80', 'lg:u-max-w-[calc(100%-415px)]'],
+  } only %}
+
+</footer>

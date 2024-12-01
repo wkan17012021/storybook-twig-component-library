@@ -1,0 +1,16 @@
+body.header-on-canvas #pageHeader,
+body.header-off-canvas #pageHeader {
+  position: fixed;
+  top: 0;
+}
+
+body.header-off-canvas #pageHeader {
+  /* 150px = 128px (header height) + 22px (bottom offset of menu) */
+  top: -150px;
+}
+
+body.header-on-canvas .dialog-off-canvas-main-canvas,
+body.header-off-canvas .dialog-off-canvas-main-canvas {
+  /* Header height */
+  padding-top: 128px;
+}

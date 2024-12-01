@@ -1,0 +1,106 @@
+{{ attach_library('mytheme/header') }}
+
+{% set span_classes = [
+  'toggle-line',
+  'u-block',
+  'u-absolute',
+  'u-h-0.5',
+  'u-w-5',
+  'u-bg-current',
+  'u-transform',
+  'u-transition',
+  'u-duration-500',
+  'u-ease-in-out',
+] %}
+
+{% set content %}
+  {% embed '@atoms/link/link.twig' with {
+    attributes: create_attribute().setAttribute('rel', 'home').setAttribute('tabindex', '-1'),
+    url: '/',
+    remove_classes: 'u-text-burnt-orange',
+    logo_src: logo_src,
+  } only %}
+    {% block content %}
+      {% include '@atoms/image/image.twig' with {
+        attributes: create_attribute().setAttribute('fetchpriority', 'high'),
+        alt: 'Travel Co',
+        classes: [
+          'u-h-[40px]',
+          'lg:u-h-[50px]',
+          'xl:u-h-[70px]',
+        ],
+        src: logo_src,
+      } only %}
+    {% endblock %}
+  {% endembed %}
+  <div class="u-hidden lg:u-flex u-items-baseline u-gap-4 u-ml-auto">
+    {{ secondary_nav }}
+    {{ search_form }}
+    <div class="header-subscribe-button">
+      {% include '@atoms/link-button/link-button.twig' with {
+        url: 'https://unsplash.com/s/photos/travel',
+        new_window: true,
+        content: 'Subscribe'|t,
+        type: 'primary2',
+        classes: ['u-leading-none', 'u-h-[35px]', 'u-no-underline'],
+        icons_url: icons_url,
+      } only %}
+    </div>
+  </div>
+  {{ mobile_menu }}
+  <div id="desktopMenu" class="u-absolute u-right-0 -u-bottom-[1.2rem] u-z-10 u-pr-[calc((100vw-1200px)/2)] u-bg-ochre">
+    <div class="u-pr-[1.2rem]">
+      {{ main_nav }}
+    </div>
+  </div>
+
+  {% embed '@atoms/button/button.twig' with {
+    attributes: create_attribute().setAttribute('id','myThemeMobileMenuToggle').setAttribute('aria-label','Toggle navigation'|t),
+    remove_default_classes: true,
+    span_classes: span_classes,
+    classes: [
+      'lg:u-hidden',
+      'u-text-black',
+      'u-w-10',
+      'u-h-10',
+      'u-relative',
+      'focus:u-outline-none',
+      'u-bg-white',
+    ],
+  } only %}
+    {% block content %}
+      <span
+          class="toggle-container u-block u-w-5 u-absolute u-left-1/2 u-top-1/2 u-transform -u-translate-x-1/2 -u-translate-y-1/2">
+          <span{{ create_attribute().addClass(span_classes).addClass('-u-translate-y-1.5') }}></span>
+          <span{{ create_attribute().addClass(span_classes) }}></span>
+          <span{{ create_attribute().addClass(span_classes).addClass('u-translate-y-1.5') }}></span>
+        </span>
+    {% endblock %}
+  {% endembed %}
+{% endset %}
+
+{% include '@molecules/section/section.twig' with {
+  attributes: create_attribute().setAttribute('id', 'pageHeader').setAttribute('role', 'banner'),
+  classes: [
+    'u-relative',
+    'u-z-[99]',
+    'u-w-full',
+    'lg:u-h-[128px]',
+    '[transition-property:all]',
+    '[transition-duration:300ms]',
+    '[transition-timing-function:linear]',
+  ],
+  tag: 'header',
+  content: content,
+  content_classes: [
+    'u-flex',
+    'u-justify-between',
+    'u-items-center',
+    'lg:u-items-start',
+  ],
+  remove_container_classes: ['u-relative', 'u-pt-2'],
+  content_wrapper_classes: ['lg:u-pt-6'],
+  remove_content_wrapper_classes: ['u-relative'],
+} only %}
+
+
