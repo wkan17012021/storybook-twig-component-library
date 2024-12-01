@@ -1,0 +1,19 @@
+{% set attributes = attributes|default(create_attribute()) %}
+
+{# Render the header search submit button with only a search icon. #}
+{% if attributes.value|lower == 'search' %}
+  {% set icon_id = 'search' %}
+  {% set tag = 'button' %}
+  {% set remove_default_classes = true %}
+  {% set icon_width = '35px' %}
+  {% set attributes = attributes.setAttribute('value', '').addClass([
+    'button',
+    'u-text-black',
+    'u-bg-ochre',
+  ]) %}
+{% endif %}
+
+{% include '@atoms/button/button.twig' with {
+  attributes: attributes.setAttribute('type', 'submit').addClass('u-cursor-pointer'),
+  tag: tag|default('input'),
+} %}

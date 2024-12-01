@@ -1,0 +1,53 @@
+{% set attributes = attributes|default(create_attribute()).addClass([
+  'u-block',
+  'u-font-semibold',
+  'u-min-w-0',
+  'u-my-[calc(1_*_1.125rem)]',
+  'u-mx-4',
+  'u-py-0',
+  'u-px-0',
+  'u-border-2',
+  'u-border-solid',
+  'u-border-grey',
+  'u-rounded-sm',
+  'u-bg-white',
+]) %}
+
+{% set legend_attributes = legend_attributes|default(create_attribute()).addClass([
+  'u-float-left',
+  'u-w-full',
+  'u-font-bold',
+  'u-border-solid',
+  'u-border-grey',
+  'u-rounded-t-sm',
+  'u-bg-neutral-grey',
+  'u-p-2',
+  'u-mb-4',
+]) %}
+
+<fieldset{{ attributes.addClass(classes) }}>
+  {# Always wrap fieldset legends in a <span> for CSS positioning. #}
+  <legend{{ legend_attributes }}>
+    <span>{{ legend.title }}</span>
+  </legend>
+  <div class="fieldset-wrapper u-pl-4">
+    {% if description_display == 'before' and description.content %}
+      <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
+    {% endif %}
+    {% if errors %}
+      <div>
+        {{ errors }}
+      </div>
+    {% endif %}
+    {% if prefix %}
+      <span class="field-prefix">{{ prefix }}</span>
+    {% endif %}
+    {{ children }}
+    {% if suffix %}
+      <span class="field-suffix">{{ suffix }}</span>
+    {% endif %}
+    {% if description_display in ['after', 'invisible'] and description.content %}
+      <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
+    {% endif %}
+  </div>
+</fieldset>

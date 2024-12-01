@@ -1,0 +1,7 @@
+{% extends '@atoms/fields/field.twig' %}
+
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% set default_classes = ['clearfix', 'rich-text'] %}
+
+{% set attributes = attributes.addClass(default_classes).addClass(classes) %}

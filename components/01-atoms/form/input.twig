@@ -1,0 +1,12 @@
+{% set attributes = attributes|default(create_attribute())
+  .setAttribute('type', type|default('text'))
+  .addClass(classes)
+  .addClass([
+    'u-block',
+    'u-bg-neutral-grey',
+    'u-px-4',
+    'u-py-2',
+    'u-font-light',
+    'u-max-w-full',
+  ]) %}
+<input{{ attributes }}/>{{ children }}

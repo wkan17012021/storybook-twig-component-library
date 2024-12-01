@@ -1,0 +1,7 @@
+{% set attributes = create_attribute().addClass(['u-w-full', 'md:u-w-auto']) %}
+
+{% for item in items %}
+  <div{{ attributes }}>
+    {{ item.content }}
+  </div>
+{% endfor %}

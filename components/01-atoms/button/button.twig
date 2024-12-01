@@ -1,0 +1,50 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set tag = tag|default('button') %}
+
+{% if bg_colour is defined and bg_colour is empty %}
+  {% set bg_colour = 'u-bg-transparent' %}
+{% else %}
+  {% set bg_colour = bg_colour|default('u-bg-ochre') %}
+{% endif %}
+
+{% if content is not defined or content is empty %}
+  {% set icon_only = true %}
+{% endif %}
+
+{% if not remove_default_classes %}
+  {% set classes = [
+    'button',
+    'u-px-3',
+    'u-py-2',
+    'u-text-sm',
+    'u-text-black',
+    'u-inline-flex',
+    'u-items-center',
+    'u-gap-2',
+    bg_colour,
+  ] %}
+
+  {% set attributes = attributes.addClass(classes) %}
+{% endif %}
+
+<{{ tag }}{{ attributes }}>
+{% block content %}
+
+  {% if not icon_only %}
+    {{ content }}
+  {% endif %}
+
+  {% if icon_id %}
+    {% include '@atoms/icon/icon.twig' with {
+      classes: [
+        'u-text-inherit',
+        'u-fill-current'
+      ]|merge(icon_classes|default([])),
+      id: icon_id,
+      icons_url: icons_url,
+      width: icon_width,
+    } only %}
+  {% endif %}
+
+{% endblock %}
+</{{ tag }}>
