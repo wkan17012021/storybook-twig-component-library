@@ -1,0 +1,17 @@
+{% if items.services.copy %}
+  {{ attach_library('mytheme/social-share-copy-url') }}
+{% endif %}
+
+{% include '@atoms/heading/heading.twig' with {
+  level: 5,
+  content: 'Share this'|t,
+  classes: ['h2', '!u-font-normal'],
+} only %}
+
+<div class="social-share">
+  {% include '@molecules/social-links/social-links.twig' with {
+    bg_colour: 'u-bg-ochre',
+    icons_url: icons_url,
+  } %}
+  <div class="social-share__popup u-hidden">{{ 'Copied to clipboard'|t }}</div>
+</div>

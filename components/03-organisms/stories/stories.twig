@@ -1,0 +1,42 @@
+{{ attach_library('mytheme/stories-carousel') }}
+
+{% set content %}
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {{ stories }}
+    </div>
+  </div>
+  <div class="u-text-center u-my-4">
+    <div class="swiper-paging"></div>
+  </div>
+{% endset %}
+
+{% include '@molecules/section/section.twig' with {
+  heading: title,
+  body: body,
+  classes: ['stories'],
+  header_classes: [
+    'u-text-center',
+    'u-flex',
+    'u-flex-col',
+    'u-gap-6',
+    'u-mb-6',
+    'md:u-max-w-[90%]',
+    'lg:u-max-w-[80%]',
+    'u-mx-auto',
+    'u-mb-4',
+  ],
+  heading_classes: ['u-font-semibold', 'u-text-dark-blue'],
+  body_classes: ['u-text-lg', 'u-font-black'],
+  remove_body_classes: ['xl:u-max-w-[38rem]', 'u-font-semibold', 'u-text-sm', 'md:u-text-2xl'],
+  add_padding_classes: false,
+  content_wrapper_classes: [
+    'u-pt-3',
+    'u-pb-4',
+    'md:u-pt-6',
+    'md:u-pb-7',
+    'lg:u-pt-8',
+    'lg:u-pb-9',
+    'xxl:u-p-0',
+  ],
+} %}

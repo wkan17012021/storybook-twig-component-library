@@ -1,0 +1,5 @@
+{% set wrapper_text_colour = (bg_colour == 'u-bg-grey-blue' or bg_colour == 'u-bg-dark-blue') ? 'u-text-white':'' %}
+
+{% include '@molecules/section/section.twig' with {
+  use_columns: true,
+} %}
