@@ -1,0 +1,7 @@
+{% set attributes = attributes|default(create_attribute()) %}
+{% set attributes = attributes.addClass(classes) %}
+
+<div{{ attributes }}>
+  {{ title_suffix.contextual_links }}
+  {{ content }}
+</div>

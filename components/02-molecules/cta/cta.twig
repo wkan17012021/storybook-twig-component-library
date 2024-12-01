@@ -1,0 +1,32 @@
+{% include '@molecules/section/section-content.twig' with {
+  add_padding_classes: true,
+  sub_container_columns: false,
+  sub_container_classes: ['cta']|merge(sub_container_classes|default([])),
+  content_wrapper_classes: [
+    'u-gap-6',
+    not bg_colour ? 'u-bg-neutral-grey':bg_colour,
+  ]|merge(content_wrapper_classes|default([])),
+  heading_classes: [
+    'h4',
+    '!u-mb-0',
+    '!u-font-extrabold',
+    'u-text-md'
+  ],
+  body_classes: [
+    'u-text-balance',
+    'u-font-extrabold',
+    'u-text-md',
+  ],
+  remove_body_classes: [
+    'xl:u-max-w-[38rem]',
+    'u-leading-tight',
+    'u-font-semibold',
+    'u-text-sm',
+    'md:u-text-2xl',
+  ],
+  remove_content_wrapper_classes: [
+    'lg:u-p-9',
+    'lg:u-pt-8',
+    'xxl:u-p-0',
+  ]
+} %}

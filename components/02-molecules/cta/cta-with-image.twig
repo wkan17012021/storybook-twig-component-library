@@ -1,0 +1,40 @@
+{% if alignment == 'right' %}
+  {% set alignment_class = 'md:u-justify-end' %}
+{% elseif alignment == 'centre' %}
+  {% set alignment_class = 'md:u-justify-center' %}
+{% else %}
+  {% set alignment_class = 'md:u-justify-start' %}
+{% endif %}
+
+{# Set empty media var to enable media container. #}
+{% set media = '' %}
+{% set media_attributes = create_attribute().setAttribute('style','background-image:url('~image~')') %}
+{% set media_classes = [
+  'u-bg-top',
+  'u-bg-cover',
+  'u-h-[25rem]',
+  'md:u-absolute',
+  'md:u-top-0',
+  'md:u-w-full',
+]|merge(media_classes|default([])) %}
+
+{% set cta_classes = [
+  'cta',
+  'md:u-flex',
+  alignment_class
+]|merge(cta_classes|default([])) %}
+
+<div{{ create_attribute().addClass(cta_classes) }}>
+  {% include '@molecules/cta/cta.twig' with {
+    sub_container_classes: [
+      'md:u-flex',
+      'md:u-relative',
+      'md:u-pt-64',
+      alignment != 'centre'? 'md:u-w-[calc(100%-64px)] xl:u-w-full':'u-w-full',
+      alignment_class
+    ],
+    content_wrapper_classes: [
+      alignment != 'centre'? 'md:u-w-[calc(100%-80px)]':'md:u-w-[calc(100%-(1.75rem*2))] lg:u-w-[634px]',
+    ]|merge(content_wrapper_classes|default([])),
+  } %}
+</div>
