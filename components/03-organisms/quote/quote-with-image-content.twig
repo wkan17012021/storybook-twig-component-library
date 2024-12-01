@@ -1,0 +1,71 @@
+{% set media_position = image_position|default('right') %}
+
+{% set icon_wrapper_classes = [
+  'u-translate-y-[-25px]',
+  'md:u-translate-y-0',
+  media_position == 'left'? 'md:u-translate-x-[-50%]':'md:u-translate-x-[50%]',
+] %}
+
+{% set media %}
+  {{ image }}
+  <div{{ create_attribute().addClass(icon_wrapper_classes) }}>
+    {# Default quote icon #}
+    {% include '@atoms/icon/icon.twig' with {
+      id: 'quote-red-bg',
+      icons_url: icons_url,
+      width: '73px',
+      classes: 'xl:u-hidden',
+    } only %}
+    {# Quote icon for XL+ devices #}
+    {% include '@atoms/icon/icon.twig' with {
+      id: 'quote-red-bg',
+      icons_url: icons_url,
+      width: '129px',
+      classes: [
+        'u-hidden',
+        'xl:u-block',
+      ],
+    } only %}
+  </div>
+{% endset %}
+
+{% set content %}
+  {% include '@molecules/blockquote/blockquote.twig' with {
+    content: quote,
+    source: source,
+    source_link: source_link,
+    new_window: new_window,
+    position_classes: 'md:u-text-left',
+    cite_classes: 'xl:u-text-2xl',
+    remove_cite_classes: 'xl:u-text-lg',
+    quote_classes: [
+      'xl:u-text-6xl',
+      'xl:u-leading-tight',
+      'xl:u-mb-6',
+    ],
+    remove_quote_classes: [
+      'xl:u-text-4xl',
+      'xl:u-leading-normal',
+      'xl:u-mb-2',
+    ],
+  } only %}
+{% endset %}
+
+{% include '@molecules/section/section-content.twig' with {
+  media: media,
+  content: content,
+  media_position: media_position,
+  sub_container_classes: [
+    'md:u-py-8',
+    'md:u-items-center',
+    'xl:u-py-16',
+  ],
+  media_classes: [
+    'u-flex',
+    'u-flex-col',
+    'u-items-center',
+    media_position == 'left'? 'md:u-mr-[5px] md:u-flex-row':'md:u-ml-[20px] md:u-flex-row-reverse',
+  ],
+  sub_container_classes: sub_container_classes,
+  add_padding_classes: true,
+} only %}

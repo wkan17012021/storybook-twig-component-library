@@ -1,0 +1,12 @@
+{{ attach_library('mytheme/people-profiles') }}
+
+{% include '@molecules/section/section.twig' with {
+  classes: ['u-relative', 'people-profiles'],
+  heading: title,
+  body: body,
+  indent_bg: true,
+  has_overlay: true,
+  use_columns: true,
+  content_wrapper_classes: ['xl:u-static'],
+  content_classes: ['u-relative', 'lg:u-static'],
+} %}

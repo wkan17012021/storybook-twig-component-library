@@ -1,0 +1,47 @@
+{% set wrapper_text_colour = (bg_colour == 'u-bg-grey-blue' or bg_colour == 'u-bg-dark-blue') ? 'u-text-white':'' %}
+{% set image_position = image_position|default('right') %}
+
+{% embed '@molecules/section/section.twig' with {
+  classes: [
+    "lg:u-bg-[url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgOTA0IDM0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgb3BhY2l0eT0iMC4zNSI+CjxwYXRoIGQ9Ik0yOTAuMzc0IC0zMjkuMzY4QzQxNi45NiAtMjU4LjM0NiA0NzguODc0IC02MC4yMzc5IDQxNS41NDcgMjAyLjE1OEM0NTcuODg4IDIyOS41MDQgNTAyLjMyNSAyNDguNzM5IDU0NS44MDMgMjU5LjI0M0M2MDguNzg1IDQzLjU3MzYgNjEwLjExNyAtMTc5LjAxNiA0NzQuMDk2IC0zMTQuMTAzQzQ1Ni41NjcgLTMzMS41MTIgNDMzLjQzMSAtMzQ4LjQ5OSA0MDYuMjUzIC0zNjAuNzA3QzM2MC4xNTIgLTM2Ni43MzYgMzI0Ljg4MSAtMzU2LjU2MSAyOTAuMzc0IC0zMjkuMzY4WiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIwLjc1IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiLz4KPHBhdGggZD0iTTE1MC41ODggLTMwMi43ODhDMzAuNTk1MiAtMTgyLjMyOCA4LjEzMTExIDM2LjAwMjcgMjEwLjk4IDIzNy40NThDMzE3LjM1OCAzNDMuMTA2IDUzNC44MzEgNDQ5Ljc3NCA3MjIuMTM2IDI2My44MjNMNzI1LjY4MSAyNjAuMjY0QzcyOS45MjcgMjU2LjAwMSA3MzQuMTMxIDI1MS41NCA3MzguMjk0IDI0Ni45NkM3MDYuNTk4IDI2My42NCA2NjUuMDM4IDI3MC44MzcgNjE5LjUxNyAyNjkuMzUzQzU5NS43NDcgMjY4LjU0MiA1NzEuMTk0IDI2NS40NzUgNTQ1Ljg0MyAyNTkuMjgyQzUwMi40MDQgMjQ4Ljc0IDQ1Ny45NjcgMjI5LjUwNSA0MTUuNTg3IDIwMi4xOThDMzkwLjQ4NiAxODUuOTgzIDM2NS45MDkgMTY3Ljc5OSAzNDMuMjg1IDE0NS4zMzFDMTY5LjUxOCAtMjcuMjQyOCAxNjUuNDY0IC0yMDcuMjU2IDI2OS4wMTYgLTMxMS4yMTJDMjc2LjE4NCAtMzE4LjQwOCAyODMuMzAxIC0zMjMuNzExIDI5MC40NTMgLTMyOS4zNjhDMzI0Ljk2IC0zNTYuNTYgMzYwLjIzMSAtMzY2LjczNSA0MDYuMzMyIC0zNjAuNzA3QzMxNi40NyAtNDA0LjY3MSAyMjYuNzEzIC0zNzkuMjEgMTUwLjU4OCAtMzAyLjc4OFoiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMC43NSIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIi8+CjwvZz4KPC9zdmc+Cg==)]",
+    'u-bg-no-repeat',
+    'u-bg-bottom',
+    'u-p-0',
+  ],
+  container_classes: [
+    'u-pt-4',
+    'u-pb-6',
+  ],
+  remove_container_classes: [
+    'u-pt-2',
+    'u-pb-3',
+  ]
+} %}
+
+  {% block content %}
+    <div class="quote__content u-flex u-gap-4 u-flex-col u-items-center lg:u-flex-row lg:u-items-start xl:u-items-center xl:u-gap-8">
+      <div class="quote__icon-wrapper">
+        {# Default quote icon #}
+        {% include '@atoms/icon/icon.twig' with {
+          id: 'quote-red-bg',
+          icons_url: icons_url,
+          width: '73px',
+          classes: 'xl:u-hidden',
+        } only %}
+        {# Quote icon for XL+ devices #}
+        {% include '@atoms/icon/icon.twig' with {
+          id: 'quote-red-bg',
+          icons_url: icons_url,
+          width: '166px',
+          classes: ['u-hidden', 'xl:u-block'],
+        } only %}
+      </div>
+      {% include '@molecules/blockquote/blockquote.twig' with {
+        content: content,
+        source: source,
+        source_link: source_link,
+        new_window: new_window,
+      } only %}
+    </div>
+  {% endblock %}
+{% endembed %}
