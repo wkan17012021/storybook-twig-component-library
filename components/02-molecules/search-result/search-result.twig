@@ -1,0 +1,21 @@
+{% set attributes = attributes|default(create_attribute())
+  .addClass(classes)
+  .addClass([
+    'u-my-4',
+    'u-mx-2',
+    'u-p-4',
+    'u-bg-neutral-grey',
+  ])
+  .removeClass(remove_classes) %}
+
+<div{{ attributes }}>
+  {% include '@atoms/heading/heading.twig' with {
+    level: 4,
+    content: title,
+    url: url,
+    link_attributes: create_attribute().addClass('u-text-black'),
+  } only %}
+  {% include '@atoms/text/paragraph.twig' with {
+    content: content,
+  } only %}
+</div>

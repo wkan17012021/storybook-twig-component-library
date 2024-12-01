@@ -1,0 +1,163 @@
+{% set sub_container_columns = sub_container_columns ?? (content is defined and content is not empty) and (media is defined and media is not empty) %}
+{% set media_attributes = media_attributes|default(create_attribute()) %}
+
+{% set sub_container_classes = [
+  'section__sub-container',
+]|merge(sub_container_classes|default([])) %}
+
+{% set content_classes = [
+  'section__content',
+  content_text_colour,
+]|merge(content_classes|default([])) %}
+
+{% set header_classes = [
+  'section__header',
+]|merge(header_classes|default([])) %}
+
+{% set body_classes = [
+  'section__body',
+  'xl:u-max-w-[38rem]',
+  'u-leading-tight',
+  'u-font-semibold',
+  'u-text-sm',
+  'md:u-text-2xl',
+]|merge(body_classes|default([])) %}
+
+{% set footer_classes = [
+  'section__footer',
+]|merge(footer_classes|default([])) %}
+
+{% set heading_classes = [
+  'section__heading',
+  not body ? 'u-mb-0':'',
+]|merge(heading_classes|default([])) %}
+
+{% set media_classes = [
+  'section__media',
+]|merge(media_classes|default([])) %}
+
+{% set content_wrapper_classes = [
+  'section__content-wrapper',
+  'u-flex',
+  'u-gap-4',
+  'u-flex-col',
+  'u-relative',
+  'u-z-[2]',
+]|merge(content_wrapper_classes|default([])) %}
+
+{% if add_padding_classes %}
+  {% set content_wrapper_classes = content_wrapper_classes|merge([
+    'u-pt-3',
+    'u-pb-4',
+    'u-px-[15px]',
+    'md:u-p-7',
+    'md:u-pt-6',
+    'lg:u-p-9',
+    'lg:u-pt-8',
+    'xxl:u-p-0',
+  ]) %}
+{% endif %}
+
+{% if use_columns %}
+  {% set content_classes = content_classes|merge([
+    'u-flex',
+    'u-flex-col',
+    'u-gap-7',
+    'md:u-gap-8',
+    'md:u-flex-row',
+  ]) %}
+{% endif %}
+
+{% if indent_bg %}
+  {% if add_padding_classes and media is empty %}
+    {% set content_wrapper_classes = content_wrapper_classes|merge([
+      'md:u-pr-0',
+      'lg:u-pr-0',
+      'xl:u-pr-9',
+    ]) %}
+    {% set header_classes = header_classes|merge(['md:u-mr-[64px]']) %}
+    {% set footer_classes = footer_classes|merge(['md:u-mr-[64px]']) %}
+  {% endif %}
+{% endif %}
+
+{# Where both content and media are defined, they are laid out as side-by-side columns on MD+ devices #}
+{% if sub_container_columns %}
+  {% set sub_container_classes = sub_container_classes|merge([
+    'u-flex',
+    'u-flex-col',
+    'u-flex-nowrap',
+    'md:u-flex-row',
+    'md:u-gap-8',
+    'md:u-justify-between',
+    media_position == 'right' ? 'md:u-flex-row-reverse':'',
+  ]) %}
+  {% set content_wrapper_classes = content_wrapper_classes|merge([
+    'md:u-w-[50%]',
+  ]) %}
+  {% set media_classes = media_classes|merge([
+    'u-relative',
+    'u-z-10',
+    'md:u-w-[50%]',
+    'md:u-max-w-[578px]',
+  ]) %}
+{% endif %}
+
+<div{{ create_attribute().addClass(sub_container_classes).removeClass(remove_sub_container_classes) }}>
+
+  {% if media is defined %}
+    <div{{ media_attributes.addClass(media_classes).removeClass(remove_media_classes) }}>
+      {{ media }}
+    </div>
+  {% endif %}
+
+  <div{{ create_attribute().addClass(content_wrapper_classes).removeClass(remove_content_wrapper_classes) }}>
+    {% if title or body %}
+      <header{{ create_attribute().addClass(header_classes).removeClass(remove_header_classes) }}>
+        {% if title %}
+          {% include '@atoms/heading/heading.twig' with {
+            classes: heading_classes,
+            remove_classes: remove_heading_classes,
+            level: heading_level|default(2),
+            content: title,
+          } only %}
+        {% endif %}
+
+        {% if body %}
+          <div{{ create_attribute().addClass(body_classes).removeClass(remove_body_classes) }}>
+            {{ body }}
+          </div>
+        {% endif %}
+      </header>
+
+    {% endif %}
+
+    {% if content is defined and content is not empty %}
+      {% block content %}
+        <div{{ create_attribute().addClass(content_classes) }}>
+          {{ content }}
+        </div>
+      {% endblock %}
+    {% endif %}
+
+    {% if block('footer') is defined or (cta_button and cta_button.url and cta_button.content) %}
+      <footer{{ create_attribute().addClass(footer_classes) }}>
+        {% block footer %}
+          {% if cta_button and cta_button.url and cta_button.content %}
+            {% include '@atoms/link-button/link-button.twig' with {
+              content: cta_button.content,
+              url: cta_button.url,
+              new_window: cta_button.new_window,
+              type: cta_button.type,
+              icons_url: icons_url,
+            } only %}
+          {% endif %}
+        {% endblock %}
+      </footer>
+    {% endif %}
+
+    {% if has_overlay %}
+      <div
+          class="section-overlay-bg u-absolute u-z-20 u-inset-0 u-bg-dark-blue u-bg-opacity-70 u-hidden lg:u-hidden"></div>
+    {% endif %}
+  </div>
+</div>

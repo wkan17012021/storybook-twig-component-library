@@ -1,0 +1,28 @@
+@use "../../00-base/05-mixins.scss" as mixins;
+
+@mixin active-story-card() {
+  .story-card__body {
+    top: 0;
+  }
+
+  .story-card__title {
+    top: 100%;
+  }
+
+  .story-card__quote-icon {
+    top: 100%;
+    transform: translate(-50%, -100%);
+  }
+}
+
+// Toggling of card content for mobile.
+.story-card.active {
+  @include active-story-card;
+}
+
+// Card content shows on hover for LG+ screens.
+@include mixins.breakpoint('lg') {
+  .story-card:hover {
+    @include active-story-card;
+  }
+}

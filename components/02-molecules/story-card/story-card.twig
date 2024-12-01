@@ -1,0 +1,47 @@
+{% set attributes = create_attribute().addClass([
+  'story-card',
+  'u-relative',
+  'u-py-[36px]',
+  'u-w-[320px]',
+]|merge(classes|default([]))) %}
+
+{% set wrapper_attributes = create_attribute().addClass([
+  'u-relative',
+  'u-overflow-hidden',
+  'u-bg-top',
+  'u-w-full',
+  'u-h-[593px]',
+  'u-bg-center',
+  'u-bg-cover',
+]|merge(wrapper_classes|default([]))) %}
+
+{% if image %}
+  {% set wrapper_attributes = wrapper_attributes.setAttribute('style','background-image:url('~image~')') %}
+{% endif %}
+
+{# Adding an empty onclick attribute makes hover state work for mobile. See: https://stackoverflow.com/a/25673064/777885 #}
+<div{{ attributes.setAttribute('onlick','') }}>
+  <div class="story-card__quote-icon u-absolute u-z-10 u-left-1/2 u-top-0 -u-translate-x-1/2 u-transition-all u-duration-500">
+    {% include '@atoms/icon/icon.twig' with {
+      id: 'quote-red-bg',
+      icons_url: icons_url,
+      width: '73px',
+    } only %}
+  </div>
+  <div{{ wrapper_attributes }}>
+    <div
+        class="story-card__title u-absolute u-top-0 u-w-full u-h-full u-flex u-items-end u-pb-4 u-px-[15px] md:u-p-7 lg:u-p-9 u-transition-[top] u-duration-500"
+        style="background-color:rgba(0,0,0,.35)">
+      {% include '@atoms/heading/heading.twig' with {
+        classes: ['h4', 'u-leading-tight', 'u-text-white', '!u-mb-0'],
+        level: 3,
+        content: title,
+      } only %}
+    </div>
+    <div
+        class="story-card__body u-text-black u-bg-ochre u-absolute -u-top-full u-w-full u-h-full u-flex u-items-end u-pb-16 u-px-[15px] md:u-p-7 lg:u-p-9 u-text-xl u-font-bold u-text-center u-leading-relaxed u-transition-[top] u-duration-500"
+        style="background-color:rgba(255,162,2,.85)">
+      {{ body }}
+    </div>
+  </div>
+</div>

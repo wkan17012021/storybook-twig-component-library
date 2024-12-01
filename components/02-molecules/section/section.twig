@@ -1,0 +1,61 @@
+{% set attributes = attributes|default(create_attribute()) %}
+{% set tag = tag|default('section') %}
+{% set has_overlay = has_overlay ?? false %}
+{% set add_padding_classes = add_padding_classes ?? true %}
+{% set indent_bg = indent_bg ?? false %}
+{% set indent_bg_2xl = indent_bg_2xl ?? false %}
+{% set content_text_colour = content_text_colour|default('u-text-black') %}
+{% set bg_colour = bg_colour|default('u-bg-white') %}
+{% set body_text_colour = (bg_colour == 'u-bg-grey-blue' or bg_colour == 'u-bg-dark-blue') ? 'u-text-white':'' %}
+
+{% set classes = [
+  bg_colour,
+  body_text_colour,
+]|merge(classes|default([])) %}
+
+{% set container_classes = [
+  'section__container',
+  'u-mx-auto',
+  'u-w-full',
+  'u-relative',
+  'u-z-10',
+  '2xl:u-w-[1200px]',
+]|merge(container_classes|default([])) %}
+
+{% if indent_bg %}
+  {# The background indent comprises 2 parts: #}
+  {# 1. An indent on the container that shows on MD devices (>=768px) #}
+  {# 2. An indent on the section (parent element) that shows on XL devices (>=1200px) #}
+
+  {% set container_classes = container_classes|merge([
+    'md:u-relative',
+    'md:after:u-absolute',
+    'md:after:u-z-[1]',
+    'md:after:u-inset-y-0',
+    'md:after:u-bg-white',
+    'md:after:u-w-[64px]',
+    indent_bg_side == 'left' ? 'md:after:u-left-0':'md:after:u-right-0',
+    not indent_bg_2xl ? 'xl:after:u-content-none':'',
+  ]) %}
+
+  {% if indent_bg_2xl %}
+    {% set classes = classes|merge([
+      '2xl:u-relative',
+      '2xl:after:u-absolute',
+      '2xl:after:u-z-[1]',
+      '2xl:after:u-inset-y-0',
+      '2xl:after:u-bg-white',
+      '2xl:after:u-w-[calc((100vw-1200px)/2)]',
+      indent_bg_side == 'left' ? '2xl:after:u-left-0':'2xl:after:u-right-0',
+    ]) %}
+  {% endif %}
+{% endif %}
+
+<{{ tag }}{{ attributes.addClass(classes).removeClass(remove_classes) }}>
+<div{{ create_attribute().addClass(container_classes).removeClass(remove_container_classes) }}>
+  {% block section_content %}
+    {% include '@molecules/section/section-content.twig' %}
+  {% endblock %}
+  {% block section_footer %}{% endblock %}
+</div>
+</{{ tag }}>

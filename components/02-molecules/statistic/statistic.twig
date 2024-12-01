@@ -1,0 +1,22 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set stat_classes = [
+  'u-text-[5.12rem]',
+  'lg:u-text-[7.12rem]',
+  'u-font-bold',
+  'u-leading-none',
+  'u-max-w-xs',
+]|merge(stat_classes|default([])) %}
+
+<div{{ attributes }}>
+  {% include '@atoms/text/paragraph.twig' with {
+    content: statistic,
+    classes: stat_classes,
+  } only %}
+  {% include '@atoms/heading/heading.twig' with {
+    level: 4,
+    content: heading,
+  } only %}
+  {% include '@atoms/text/paragraph.twig' with {
+    content: body,
+  } only %}
+</div>

@@ -1,0 +1,32 @@
+{% set alt_texts = alt_texts|default({
+  linkedin: 'LinkedIn',
+  x: 'X',
+  youtube: 'YouTube',
+  facebook: 'Facebook',
+  instagram: 'Instagram',
+  tiktok: 'TikTok',
+  website: '',
+  copy: '',
+}) %}
+
+{% if links %}
+  <ul class="u-flex">
+    {% for key,url in links %}
+    <li class="u-mr-1">
+      {% include '@atoms/link-button/link-button.twig' with {
+        type: 'icon-only',
+        content: alt_texts[key],
+        aria_label: alt_texts[key],
+        url: url,
+        icon_id: key,
+        bg_colour: bg_colour,
+        icons_url: icons_url,
+        remove_classes: ['u-px-3','u-py-2'],
+        icon_width: '40px',
+        new_window: true,
+        classes: 'social-link--'~key,
+      } only %}
+    </li>
+    {% endfor %}
+  </ul>
+{% endif %}
