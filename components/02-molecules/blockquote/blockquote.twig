@@ -1,0 +1,66 @@
+{% set attributes = attributes|default(create_attribute())
+  .addClass('blockquote', classes) %}
+
+{% set quote_attributes = create_attribute()
+  .addClass([
+    'u-text-center',
+    'u-text-lg',
+    'u-font-bold',
+    'u-leading-relaxed',
+    'u-mb-6',
+    'md:u-text-xl',
+    'xl:u-text-left',
+    'xl:u-text-4xl',
+    'xl:u-leading-normal',
+    'xl:u-mb-2',
+  ])
+  .addClass(position_classes)
+  .addClass(quote_classes)
+  .removeClass(remove_quote_classes) %}
+
+{% set figcaption_attributes = create_attribute()
+  .addClass([
+    'u-text-center',
+    'xl:u-text-left',
+  ])
+  .addClass(position_classes) %}
+
+{% set cite_attributes = create_attribute()
+  .addClass([
+    'u-font-normal',
+    'u-not-italic',
+    'xl:u-text-lg',
+  ])
+  .addClass(cite_classes)
+  .removeClass(remove_cite_classes)  %}
+
+{% if source_link %}
+  {% set quote_attributes = quote_attributes.setAttribute('cite', source_link) %}
+{% endif %}
+
+<figure{{ attributes }}>
+  <blockquote{{ quote_attributes }}>
+    {{ content }}
+  </blockquote>
+  <figcaption{{ figcaption_attributes }}>
+    <cite{{ cite_attributes }}>
+      {% if source_link %}
+
+        {% embed '@atoms/link/link.twig' with {
+          url: source_link,
+          new_window: new_window,
+          remove_classes: 'u-text-burnt-orange',
+          classes: 'u-underline',
+          source: source,
+        } only %}
+          {% block content %}
+            {{ source }}
+          {% endblock %}
+        {% endembed %}
+
+      {% else %}
+        {{ source }}
+      {% endif %}
+    </cite>
+  </figcaption>
+</figure>

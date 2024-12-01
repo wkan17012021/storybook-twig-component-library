@@ -1,0 +1,98 @@
+{% set attributes = create_attribute()
+  .setAttribute('id', 'breadcrumb')
+  .setAttribute('role', 'navigation')
+  .setAttribute('aria-label', 'Breadcrumb'|t)
+  .addClass([
+    'u-inline-block',
+    'u-px-3',
+    'u-py-2',
+    'u-bg-ochre',
+  ])
+  .addClass(classes)
+  .removeClass(remove_classes) %}
+
+{% set li_attributes = create_attribute()
+  .addClass([
+    'breadcrumb-item',
+    'u-hidden',
+    'md:u-flex',
+    'u-gap-3',
+    'u-items-center',
+    'u-relative',
+    'u-hidden',
+    'u-font-semibold',
+    'u-text-sm',
+    'after:u-hidden',
+    'md:after:u-inline-block',
+    'after:u-w-[2px]',
+    'after:u-h-[.8em]',
+    'after:u-bg-white',
+    'last:after:u-content-none',
+    '[&:last-child>*]:u-no-underline',
+  ])
+  .addClass(li_classes)
+  .removeClass(remove_li_classes) %}
+
+{% set item_classes = [
+  'u-items-center',
+  'u-gap-2.5',
+  'u-leading-7',
+  'u-underline',
+] %}
+
+{% set truncate_classes = [
+  'u-inline-block',
+  'u-max-w-[11rem]',
+  'u-truncate',
+] %}
+
+{% set content %}
+  <nav{{ attributes }}>
+    {% include '@atoms/heading/heading.twig' with {
+      level: 2,
+      content: 'Breadcrumb'|t,
+      classes: 'u-sr-only',
+    } only %}
+
+    <ol class="breadcrumb u-list-none u-flex u-items-middle u-gap-3" role="list">
+      {% for item in breadcrumb %}
+        <li{{ li_attributes.addClass(loop.index == loop.length - 1 ? 'u-flex':'').removeClass(loop.index == loop.length - 1 ? 'u-hidden':'').addClass(loop.last ? 'breadcrumb-item--current':'' ) }}>
+          {% if loop.last %}
+            <span{{ create_attribute().addClass(item_classes).addClass(truncate_classes).setAttribute('aria-current', 'page') }}>
+            {{ item.text }}
+            </span>
+          {% else %}
+            {% embed '@atoms/link/link.twig' with {
+              classes: item_classes|merge(['u-flex']),
+              url: item.url,
+              remove_classes: 'u-text-burnt-orange',
+              text: item.text,
+              icons_url: icons_url,
+              truncate_classes: truncate_classes,
+            } only %}
+              {% block content %}
+                {% include '@atoms/icon/icon.twig' with {
+                  icons_url: icons_url,
+                  classes: [
+                    'u-text-inherit',
+                    'u-fill-current',
+                    'u-rotate-180',
+                    'u-inline',
+                    'md:u-hidden',
+                  ],
+                  id: 'chevron',
+                } only %}
+                {# Needs a span to remove whitespace #}
+                <span{{ create_attribute().addClass(truncate_classes) }}>{{ text }}</span>
+              {% endblock %}
+            {% endembed %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+{% endset %}
+
+{% include '@molecules/section/section.twig' with {
+  content: content,
+} only %}

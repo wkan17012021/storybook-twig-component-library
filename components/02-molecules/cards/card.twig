@@ -1,0 +1,113 @@
+{% set body_attributes = body_attributes|default(create_attribute()) %}
+{% set title_attributes = title_attributes|default(create_attribute()) %}
+{% set text_attributes = text_attributes|default(create_attribute()) %}
+{% set bg_colour = bg_colour|default('u-bg-neutral-grey') %}
+
+{% set is_event = type == 'event' ? true:false %}
+{% set is_featured = type == 'featured' ? true:false %}
+{% set is_news = type == 'news' ? true:false %}
+{% set is_speaker = type == 'speaker' ? true:false %}
+
+{% set body_classes = [
+  'card__body',
+  'u-p-6',
+  featured ? 'u-bg-ochre':bg_colour,
+] %}
+
+{% set body_attributes = body_attributes.addClass(body_classes) %}
+
+{% set title_classes = [
+  'card__title',
+  type == 'speaker' ? 'u-text-center':'',
+] %}
+
+{% set title_attributes = title_attributes.addClass(title_classes) %}
+
+{% set text_classes = [
+  'card__text',
+  'u-text-balance',
+  type == 'speaker' ? 'u-text-center':'',
+] %}
+
+{% set text_attributes = text_attributes.addClass(text_classes) %}
+
+{% set image %}
+  {% include '@atoms/image/image.twig' with {
+    src: image.src,
+    alt: image.alt,
+    title: image.title,
+  } only %}
+{% endset %}
+
+<div class="card u-relative u-inline-block lg:u-max-w-[373px]">
+  <div class="card__image u-relative">
+
+    {% include '@atoms/link/link.twig' with {
+      url: url,
+      content: image,
+      remove_classes: 'u-text-burnt-orange',
+    } only %}
+
+    {# Conditionally render the tag if flag feature is truthy #}
+
+    {% if featured %}
+      <div class="card__image u-absolute u-bottom-0 u-left-0">
+        {% include '@atoms/tag/tag.twig' with {
+          classes: ['u-absolute', 'u-bottom-0', 'u-left-0'],
+          text: 'Featured'|t,
+          featured: true,
+        } only %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div{{ body_attributes }}>
+
+    <div{{ title_attributes }}>
+      {% include '@atoms/heading/heading.twig' with {
+        level: title_heading_level|default(4),
+        content: title,
+        url: url,
+        new_window: new_window,
+        remove_classes: 'u-text-burnt-orange',
+      } only %}
+    </div>
+
+    {# Conditionally render the date markup #}
+    {% if date %}
+      <div class="card__date u-leading-tight u-mb-3.5 u-font-black">
+        {% if is_featured %}
+          <span class="u-font-bold">{{ 'End of sale: '|t }}</span>
+        {% elseif is_event or is_news %}
+          <span class="u-font-bold">{{ 'Date: '|t }}</span>
+        {% endif %}
+        {% include '@atoms/date/date.twig' with {
+          datetime: datetime,
+          date: date,
+        } only %}
+      </div>
+    {% endif %}
+
+    <div{{ text_attributes }}>
+      {% include '@atoms/text/paragraph.twig' with {
+        content: body,
+      } only %}
+    </div>
+
+    {% if tags %}
+      <div class="card__tags u-mt-5">
+        {% for tag in tags %}
+          {% include '@atoms/tag/tag.twig' with {
+            attributes: create_attribute().addClass([
+              'u-mr-2',
+            ]),
+            text: tag.label,
+            url: tag.url,
+            new_window: tag.new_window,
+            border_colour: 'u-border-magenta',
+          } only %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,20 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set attributes = attributes.addClass([
+  'contact--details',
+  'u-py-2',
+  'u-px-4',
+  'u-bg-light-blue',
+]) %}
+
+<div{{ attributes }}>
+  {{ title }}
+  <div class="u-mb-4">
+    {{ first_line_address }}
+    {{ second_line_address }}
+  </div>
+  <div class="u-mb-4">
+    <span class="u-font-semibold">{{ 'Tel: '|t }}</span>{{ company_telephone }}
+    <br/>
+    <span class="u-font-semibold">{{ 'Email: '|t }}</span>{{ company_email }}
+  </div>
+</div>
