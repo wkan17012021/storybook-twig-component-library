@@ -1,6 +1,6 @@
-// import "./storybook.css";
-// import "../assets/css/tailwind.css";
-// import "../assets/css/style.css";
+import "./storybook.css";
+import "../assets/css/tailwind.css";
+import "../assets/css/style.css";
 
 // Automatically create controls where the control type arg for a story is:
 // - 'background' or 'color' = color picker

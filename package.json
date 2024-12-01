@@ -15,7 +15,7 @@
     "tw:watch": "npx tailwindcss -i ./components/tailwind.scss -o ./assets/css/tailwind.css --watch",
     "tw:config-export": "node ./scripts/tallwind-config-export.js",
     "sb:start": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "sb:build": "storybook build",
     "build:icons": "gulp",
     "build:all": "run-s build:css tw:build"
   },
