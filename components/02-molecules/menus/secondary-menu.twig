@@ -1,0 +1,7 @@
+{% include '@molecules/menus/menu.twig' with {
+  attributes: attributes,
+  ul_classes: ['u-flex', 'u-gap-4', 'u-text-sm', 'u-justify-center'],
+  item_classes: ['u-font-light', 'u-p-2', 'lg:u-p-0'],
+  items: items,
+  container_attributes: create_attribute().setAttribute('id', 'secondary-menu-container'),
+} only %}

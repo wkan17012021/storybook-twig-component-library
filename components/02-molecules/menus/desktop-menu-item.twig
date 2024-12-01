@@ -1,0 +1,95 @@
+{% set link_attributes = link['attributes']|default(create_attribute()) %}
+{% set use_link = false %}
+
+{% if level == 1 %}
+  {# Remove the white divider for the last level 1 child #}
+  {% set attributes = attributes.addClass([
+    '[&:last-child>div]:after:u-content-none',
+    '!u-border-0',
+  ]) %}
+  {# Top level link container #}
+  {# Class tbm-link-container is required for TB megamenu JS to function. #}
+  {% set link_container_attributes = create_attribute()
+    .addClass([
+      'tbm-link-container',
+      'u-relative',
+      'after:u-absolute',
+      'after:u-right-0',
+      'after:u-top-[calc(50%-.4em)]',
+      'after:u-bg-white',
+      'after:u-w-[2px]',
+      'after:u-h-[.8em]',
+    ]) %}
+  {# Top level links #}
+  {% set link_classes = [
+    'u-py-4',
+    'u-px-3',
+    'u-text-sm',
+    'u-font-semibold',
+    'hover:u-underline',
+  ] %}
+{% else %}
+  {# Submenu links #}
+  {% set link_classes = [
+    'u-block',
+    'u-py-3',
+    'u-px-6',
+    'hover:u-underline',
+    'hover:u-text-burnt-orange',
+  ] %}
+{% endif %}
+
+{% if ( link['url'] is defined and link['url'] is not empty ) %}
+  {% set use_link = true %}
+{% else %}
+  {% if submenu is empty %}
+    {% set link_attributes = link_attributes.addClass('tbm-no-submenu') %}
+  {% endif %}
+{% endif %}
+
+{# Set inner content for content #}
+{% set inner_content %}
+  {% if fontawesome and item_config['xicon'] %}
+    <span class="{{ item_config['xicon'] }}"></span>
+  {% endif %}
+  {{ link.title_translate }}
+{% endset %}
+
+{# Set content for LI #}
+{% set content %}
+  {% if section == 'frontend' %}
+    <div{{ link_container_attributes }}>
+  {% endif %}
+
+  {% if use_link %}
+    {% include '@atoms/link/link.twig' with {
+      url: link['url'],
+      attributes: link_attributes.addClass(link_classes),
+      content: inner_content,
+      remove_classes: 'u-text-burnt-orange',
+    } only %}
+  {% else %}
+    <span{{ link['attributes'].addClass('u-cursor-pointer').addClass(link_classes) }}>{{ inner_content }}</span>
+  {% endif %}
+
+  {% if section == 'frontend' %}
+    {% if submenu and not group %}
+      {% embed '@atoms/button/button.twig' with {
+        classes: block_config['auto-arrow'] ? ['tbm-submenu-toggle','always-show']:'tbm-submenu-toggle',
+        remove_default_classes: true,
+      } only %}
+        {% block content %}
+          <span class="u-invisible">{{ 'Toggle submenu'|t }}</span>
+        {% endblock %}
+      {% endembed %}
+    {% endif %}
+    </div>
+  {% endif %}
+
+  {{ submenu }}
+{% endset %}
+
+{% include '@atoms/lists/li.twig' with {
+  attributes: attributes,
+  content: content,
+} only %}

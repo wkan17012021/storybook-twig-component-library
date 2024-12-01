@@ -1,0 +1,36 @@
+{% set container_attributes = container_attributes|default(create_attribute()).addClass(classes) %}
+
+<div{{ container_attributes }}>
+  {% if items %}
+    <ul{{ attributes.addClass(ul_classes) }}>
+      {% for item in items %}
+        <li{{ item.attributes }}>
+          {% if get_type(item.url) == 'object' %}
+            {% set url = item.url.toString() %}
+          {% else %}
+            {% set url = item.url %}
+          {% endif %}
+
+          {% include '@atoms/link/link.twig' with {
+            url: url,
+            content: item.title,
+            classes: item_classes,
+            remove_classes: 'u-text-burnt-orange',
+          } only %}
+
+          {# Recursive block for rendering submenus if 'below' exists #}
+          {% if item.below %}
+            {% include '@molecules/menus/submenu.twig' with {
+              items: item.below,
+              attributes: attributes.removeClass(ul_classes).addClass(sub_ul_classes),
+              menu_level: menu_level + 1,
+              ul_classes: ul_classes,
+              sub_ul_classes: sub_ul_classes,
+              item_classes: item_classes
+            } only %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

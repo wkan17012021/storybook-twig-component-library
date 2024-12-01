@@ -1,0 +1,19 @@
+{# Calculation for width: #}
+{# (browser width - container width) / 2 = gap between container and viewport edge #}
+{# + (width of itself + right hand padding added to main navigation) #}
+{% set attributes = attributes|default(create_attribute())
+  .addClass([
+    'u-bg-white',
+    'u-py-2',
+    'u-bg-white',
+    'u-drop-shadow',
+    'u-w-auto',
+    '-u-right-[calc((100vw-1200px)/2+1.1rem)]',
+    'u-min-w-[calc(100%+1.1rem)]',
+  ]) %}
+
+<div{{ attributes }}>
+  {% for row in rows %}
+    {{ row }}
+  {% endfor %}
+</div>
