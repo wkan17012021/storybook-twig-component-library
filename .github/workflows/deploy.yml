@@ -32,6 +32,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - run: npm ci
+      - run: npm run build:icons
+      - run: npm run tw:config-export
+      - run: npm run build:all
       - run: npm run sb:build
       - name: Setup Pages
         uses: actions/configure-pages@v3
