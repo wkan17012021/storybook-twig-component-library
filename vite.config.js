@@ -11,6 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default defineConfig({
+  base: '/storybook-twig-component-library/',
   plugins: [
     // Other vite plugins.
     twig({
@@ -29,4 +30,14 @@ export default defineConfig({
     }),
     // Other vite plugins.
   ],
+  build: {
+    assetsDir: "assets", // Ensure assets are placed in a consistent folder
+    rollupOptions: {
+      output: {
+        entryFileNames: "assets/[name].js",
+        chunkFileNames: "assets/[name].js",
+        assetFileNames: "assets/[name].[ext]",
+      },
+    },
+  },
 })
