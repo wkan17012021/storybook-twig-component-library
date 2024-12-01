@@ -3,7 +3,7 @@ const Config = {
     content: ['./components/**/*.{twig,js,scss}','./templates/**/*.html.twig'],
     theme: {
       fontFamily: {
-        'base': ['Barlow', 'Roboto', 'sans-serif'],
+        'base': ['Helvetica', 'Arial', 'sans-serif'],
       },
       extend: {
         colors: {
