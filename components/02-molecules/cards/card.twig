@@ -1,7 +1,7 @@
 {% set body_attributes = body_attributes|default(create_attribute()) %}
 {% set title_attributes = title_attributes|default(create_attribute()) %}
 {% set text_attributes = text_attributes|default(create_attribute()) %}
-{% set bg_colour = bg_colour|default('u-bg-neutral-grey') %}
+{% set bg_colour = bg_colour|default('u-bg-eggshell') %}
 
 {% set is_event = type == 'event' ? true:false %}
 {% set is_featured = type == 'featured' ? true:false %}
@@ -11,7 +11,7 @@
 {% set body_classes = [
   'card__body',
   'u-p-6',
-  featured ? 'u-bg-ochre':bg_colour,
+  featured ? 'u-bg-orange':bg_colour,
 ] %}
 
 {% set body_attributes = body_attributes.addClass(body_classes) %}
@@ -45,7 +45,7 @@
     {% include '@atoms/link/link.twig' with {
       url: url,
       content: image,
-      remove_classes: 'u-text-burnt-orange',
+      remove_classes: 'u-text-red',
     } only %}
 
     {# Conditionally render the tag if flag feature is truthy #}
@@ -69,7 +69,7 @@
         content: title,
         url: url,
         new_window: new_window,
-        remove_classes: 'u-text-burnt-orange',
+        remove_classes: 'u-text-red',
       } only %}
     </div>
 

@@ -6,7 +6,7 @@
     'u-inline-block',
     'u-px-3',
     'u-py-2',
-    'u-bg-ochre',
+    'u-bg-orange',
   ])
   .addClass(classes)
   .removeClass(remove_classes) %}
@@ -65,7 +65,7 @@
             {% embed '@atoms/link/link.twig' with {
               classes: item_classes|merge(['u-flex']),
               url: item.url,
-              remove_classes: 'u-text-burnt-orange',
+              remove_classes: 'u-text-red',
               text: item.text,
               icons_url: icons_url,
               truncate_classes: truncate_classes,

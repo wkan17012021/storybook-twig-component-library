@@ -12,7 +12,7 @@ export default {
       content: "Read more",
       new_window: true,
     },
-    bg_colour: "u-bg-neutral-grey",
+    bg_colour: "u-bg-eggshell",
     icons_url: import.meta.env.STORYBOOK_ICONS_URL,
   },
   argTypes: {

@@ -13,12 +13,12 @@ export default {
     link_one: linkTemplate({
       content: "Favourite Destinations",
       url: "https://unsplash.com/s/photos/travelscholarships/",
-      remove_classes: ["u-text-burnt-orange", "u-break-words"],
+      remove_classes: ["u-text-red", "u-break-words"],
     }),
     company_email: linkTemplate({
       content: "information@website.com",
       url: "mailto:information@website.com",
-      remove_classes: ["u-text-burnt-orange"],
+      remove_classes: ["u-text-red"],
       classes: ["u-underline", "u-break-words"],
     }),
   },

@@ -11,7 +11,7 @@ const args = {
   },
   argTypes: {
     content: linkStory.argTypes.content,
-    bg_colour: bgColourArgType('u-bg-ochre'),
+    bg_colour: bgColourArgType('u-bg-orange'),
     icon_id: iconStory.argTypes.id,
     attributes: {
       type: 'array',

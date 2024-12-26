@@ -118,12 +118,12 @@ export const Section = Template.bind({});
 export const SectionWithDefaultIndentedBackground = Template.bind({});
 SectionWithDefaultIndentedBackground.args = {
   indent_bg: true,
-  bg_colour: 'u-bg-ochre',
+  bg_colour: 'u-bg-orange',
 };
 
 export const SectionWithLeftIndentedBackground = Template.bind({});
 SectionWithLeftIndentedBackground.args = {
   indent_bg: true,
   indent_bg_side: 'left',
-  bg_colour: 'u-bg-ochre',
+  bg_colour: 'u-bg-orange',
 };

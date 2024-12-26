@@ -17,7 +17,7 @@
   {% embed '@atoms/link/link.twig' with {
     attributes: create_attribute().setAttribute('rel', 'home').setAttribute('tabindex', '-1'),
     url: '/',
-    remove_classes: 'u-text-burnt-orange',
+    remove_classes: 'u-text-red',
     logo_src: logo_src,
   } only %}
     {% block content %}
@@ -48,7 +48,7 @@
     </div>
   </div>
   {{ mobile_menu }}
-  <div id="desktopMenu" class="u-absolute u-right-0 -u-bottom-[1.2rem] u-z-10 u-pr-[calc((100vw-1200px)/2)] u-bg-ochre">
+  <div id="desktopMenu" class="u-absolute u-right-0 -u-bottom-[1.2rem] u-z-10 u-pr-[calc((100vw-1200px)/2)] u-bg-orange">
     <div class="u-pr-[1.2rem]">
       {{ main_nav }}
     </div>

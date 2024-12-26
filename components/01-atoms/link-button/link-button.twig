@@ -1,6 +1,6 @@
 {% set attributes = attributes|default(create_attribute()).addClass(classes) %}
 {% set type = type|default('primary') %}
-{% set bg_colour = bg_colour|default('u-bg-ochre') %}
+{% set bg_colour = bg_colour|default('u-bg-orange') %}
 {% set icon_id = icon_id|default('chevron') %}
 
 {% set classes = [
@@ -11,22 +11,22 @@
 ] %}
 
 {% if type == 'primary' %}
-  {% set bg_colour = 'u-bg-ochre' %}
+  {% set bg_colour = 'u-bg-orange' %}
   {% set classes = classes|merge([
     'u-text-black',
     'hover:u-bg-white',
   ]) %}
 {% elseif type == 'primary2' %}
-  {% set bg_colour = 'u-bg-ochre' %}
+  {% set bg_colour = 'u-bg-orange' %}
   {% set classes = classes|merge([
     'u-text-black',
-    'hover:u-bg-burnt-orange',
+    'hover:u-bg-red',
   ]) %}
 {% elseif type == 'secondary' %}
   {% set bg_colour = 'u-bg-dark-blue' %}
   {% set classes = classes|merge([
     'u-text-white',
-    'hover:u-bg-burnt-orange',
+    'hover:u-bg-red',
   ]) %}
 {% endif %}
 
@@ -50,7 +50,7 @@
 
 {% embed '@atoms/link/link.twig' with {
   attributes: attributes,
-  remove_classes: 'u-text-burnt-orange',
+  remove_classes: 'u-text-red',
   icon_id: icon_id,
   icons_url: icons_url,
   icon_width: icon_width,

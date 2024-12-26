@@ -21,12 +21,12 @@ export default {
     company_telephone: linkTemplate({
       content: '+44 (0)20 1234 5678',
       url: 'tel:+440201234 5678',
-      remove_classes: ['u-text-burnt-orange'],
+      remove_classes: ['u-text-red'],
     }),
     company_email: linkTemplate({
       content: 'information@website.com',
       url: 'mailto:information@website.com',
-      remove_classes: ['u-text-burnt-orange'],
+      remove_classes: ['u-text-red'],
       classes: ['u-underline', 'u-break-words'],
     }),
   },

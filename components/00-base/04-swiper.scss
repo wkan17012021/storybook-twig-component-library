@@ -6,19 +6,19 @@
   --swiper-pagination-bullet-size: 14px;
   --swiper-pagination-bullet-width: 14px;
   --swiper-pagination-bullet-height: 14px;
-  --swiper-theme-color: #{vars.$color-burnt-orange};
-  --swiper-pagination-bullet-inactive-color: #{vars.$color-ochre};
+  --swiper-theme-color: #{vars.$color-red};
+  --swiper-pagination-bullet-inactive-color: #{vars.$color-orange};
   --swiper-pagination-bullet-inactive-opacity: 1;
 }
 
-section.u-bg-ochre {
+section.u-bg-orange {
   --swiper-pagination-bullet-inactive-color: #fff;
 }
 
 section.u-bg-dark-blue {
   --swiper-pagination-bullet-inactive-color: #fff;
   @include mixins.breakpoint('xl') {
-    --swiper-pagination-bullet-inactive-color: #{vars.$color-ochre};
+    --swiper-pagination-bullet-inactive-color: #{vars.$color-orange};
   }
 }
 

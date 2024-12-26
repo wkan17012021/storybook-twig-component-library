@@ -25,7 +25,7 @@
   <div{{ create_attribute().addClass(logo_wrapper_classes) }}>
     {% embed '@atoms/link/link.twig' with {
       url: '/',
-      remove_classes: 'u-text-burnt-orange',
+      remove_classes: 'u-text-red',
       logo_src: logo_src,
     } only %}
       {% block content %}
@@ -41,7 +41,7 @@
 
     {% include '@molecules/social-links/social-links.twig' with {
       links: social_links,
-      bg_colour: 'u-bg-ochre',
+      bg_colour: 'u-bg-orange',
       icons_url: icons_url,
     } only %}
   </div>
@@ -63,7 +63,7 @@
         {% include '@atoms/link/link.twig' with {
           content: '+44 (0)20 1234 5678',
           url: 'tel:+4402012345678',
-          remove_classes: ['u-text-burnt-orange'],
+          remove_classes: ['u-text-red'],
         } only %}
       </dd>
       <dt class="u-float-left u-clear-left u-font-semibold u-mr-1">{{ 'Email: '|t }}</dt>
@@ -71,7 +71,7 @@
         {% include '@atoms/link/link.twig' with {
           content: 'information@website.com',
           url: 'mailto:information@website.com',
-          remove_classes: ['u-text-burnt-orange'],
+          remove_classes: ['u-text-red'],
           classes: ['u-underline', 'u-break-words'],
         } only %}
       </dd>
@@ -100,7 +100,7 @@
   {% include '@molecules/section/section.twig' with {
     title: 'Subscribe to our newsletter'|t,
     content: "You’ll receive our monthly newsletter, and at times, we’ll email you about announcements."|t,
-    bg_colour: 'u-bg-ochre',
+    bg_colour: 'u-bg-orange',
     heading_level: 3,
     heading_classes: ['u-font-bold', 'u-leading-tight'],
     remove_heading_classes: 'u-leading-none',

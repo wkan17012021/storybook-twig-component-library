@@ -50,7 +50,7 @@ let args = {
         type: { summary: "object" },
       },
     },
-    bg_colour: bgColourArgType("u-bg-neutral-grey"),
+    bg_colour: bgColourArgType("u-bg-eggshell"),
     image: imageStory.argTypes,
     title: headingStory.argTypes.content,
     title_heading_level: headingStory.argTypes.level,

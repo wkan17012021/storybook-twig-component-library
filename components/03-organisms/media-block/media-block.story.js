@@ -34,7 +34,7 @@ export default {
       url: '#',
       type: 'secondary', // @todo this should be dynamic based on background colour
     },
-    bg_colour: 'u-bg-ochre',
+    bg_colour: 'u-bg-orange',
     icons_url: import.meta.env.STORYBOOK_ICONS_URL,
   },
   argTypes: argTypes,

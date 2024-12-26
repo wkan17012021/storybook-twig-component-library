@@ -29,7 +29,7 @@ const args = {
         type: {summary: 'string'},
       },
     },
-    bg_colour: bgColourArgType('u-bg-ochre', {arg: 'type', eq: 'icon-only'}),
+    bg_colour: bgColourArgType('u-bg-orange', {arg: 'type', eq: 'icon-only'}),
     icon_id: iconStory.argTypes.id,
   },
   parameters: {
