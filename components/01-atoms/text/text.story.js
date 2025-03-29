@@ -5,7 +5,7 @@ export default {
   title: 'Atoms/Text',
   args: {
     content:
-      `Make a trip request, connect with a local expert, and sit back while our experts craft a custom itinerary based on expertise, exclusivity, and ease. It’s a trip you couldn’t plan yourself, all with 24/7 on-the-ground support.`,
+      `We believe the best outcomes occur when people are in control of their health, with information they understand. We have signed up to the Health Charter by Public Health England. Using a technique called “sorting important’ we work with people to identify ways they can balance being happy and content with being healthy and safe.`,
   },
   argTypes: {
     content: {

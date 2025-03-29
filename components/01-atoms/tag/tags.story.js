@@ -5,7 +5,7 @@ import {borderColourArgType, newWindowArgType} from '../../00-base/utils/arg-typ
 let args = {
   title: 'Atoms/Tag',
   args: {
-    text: 'Popular',
+    text: 'SDC Tag 1',
   },
   argTypes: {
     text: {
@@ -40,12 +40,12 @@ export const Default = Template.bind({});
 
 export const TagWithLink = Template.bind({});
 TagWithLink.args = {
-  url: 'https://unsplash.com/s/photos/travel',
+  url: 'http://www.oneyoungworld.com',
 };
 
 export const ColouredTag = Template.bind({});
 ColouredTag.args = {
-  text: 'Limited time only',
+  text: 'Event',
   border_colour: 'u-border-magenta',
 };
 

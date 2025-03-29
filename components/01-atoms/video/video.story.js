@@ -1,11 +1,11 @@
 import template from './video.twig';
-import posterImage from './video-poster.jpg';
+import posterImage from './video-poster.png';
 import {responsiveArgType} from '../../00-base/utils/arg-types-helper.js';
 
 export default {
   title: 'Atoms/Video',
   args: {
-    src: 'https://assets.mixkit.co/videos/41576/41576-720.mp4',
+    src: 'https://www.oneyoungworld.com/sites/default/files/video-banner/Website-Promo.mp4',
     poster: posterImage,
   },
   argTypes: {

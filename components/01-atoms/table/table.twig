@@ -42,64 +42,64 @@
  */
 #}
 <table{{ attributes }}>
-  {% if caption %}
-    <caption>{{ caption }}</caption>
-  {% endif %}
-
-  {% for colgroup in colgroups %}
-    {% if colgroup.cols %}
-      <colgroup{{ colgroup.attributes }}>
-        {% for col in colgroup.cols %}
-          <col{{ col.attributes }} />
-        {% endfor %}
-      </colgroup>
-    {% else %}
-      <colgroup{{ colgroup.attributes }} />
+    {% if caption %}
+        <caption>{{ caption }}</caption>
     {% endif %}
-  {% endfor %}
 
-  {% if header %}
-    <thead>
-      <tr>
-        {% for cell in header %}
-          <{{ cell.tag }}{{ cell.attributes }}>
+    {% for colgroup in colgroups %}
+        {% if colgroup.cols %}
+            <colgroup{{ colgroup.attributes }}>
+                {% for col in colgroup.cols %}
+                    <col{{ col.attributes }} />
+                {% endfor %}
+            </colgroup>
+        {% else %}
+            <colgroup{{ colgroup.attributes }} />
+        {% endif %}
+    {% endfor %}
+
+    {% if header %}
+        <thead>
+        <tr>
+            {% for cell in header %}
+            <{{ cell.tag }}{{ cell.attributes }}>
             {{- cell.content -}}
-          </{{ cell.tag }}>
+        </{{ cell.tag }}>
         {% endfor %}
-      </tr>
-    </thead>
-  {% endif %}
+        </tr>
+        </thead>
+    {% endif %}
 
-  {% if rows %}
-    <tbody>
-      {% for row in rows %}
+    {% if rows %}
+        <tbody>
+        {% for row in rows %}
         <tr{{ row.attributes }}>
-          {% for cell in row.cells %}
-            <{{ cell.tag }}{{ cell.attributes }}>
-              {{- cell.content -}}
-            </{{ cell.tag }}>
-          {% endfor %}
+            {% for cell in row.cells %}
+                <{{ cell.tag }}{{ cell.attributes }}>
+                {{- cell.content -}}
+                </{{ cell.tag }}>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    {% elseif empty %}
+        <tbody>
+        <tr>
+            <td colspan="{{ header_columns }}">{{ empty }}</td>
         </tr>
-      {% endfor %}
-    </tbody>
-  {% elseif empty %}
-    <tbody>
-      <tr>
-        <td colspan="{{ header_columns }}">{{ empty }}</td>
-      </tr>
-    </tbody>
-  {% endif %}
-  {% if footer %}
-    <tfoot>
-      {% for row in footer %}
+        </tbody>
+    {% endif %}
+    {% if footer %}
+        <tfoot>
+        {% for row in footer %}
         <tr{{ row.attributes }}>
-          {% for cell in row.cells %}
-            <{{ cell.tag }}{{ cell.attributes }}>
-              {{- cell.content -}}
-            </{{ cell.tag }}>
-          {% endfor %}
-        </tr>
-      {% endfor %}
-    </tfoot>
-  {% endif %}
+            {% for cell in row.cells %}
+                <{{ cell.tag }}{{ cell.attributes }}>
+                {{- cell.content -}}
+                </{{ cell.tag }}>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+        </tfoot>
+    {% endif %}
 </table>

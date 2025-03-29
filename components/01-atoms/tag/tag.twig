@@ -1,11 +1,12 @@
 {% set attributes = attributes|default(create_attribute()).addClass(classes) %}
 {% set featured = featured|default(false) %}
 {% set border_colour = border_colour|default('u-border-black') %}
+{% set tag = tag|default('span') %}
 
 {% set classes = [
   'tag',
   'u-inline-block',
-  'u-font-black',
+  'u-font-bold',
 ] %}
 
 {% if featured %}
@@ -26,14 +27,14 @@
 {% endif %}
 
 {% set content %}
-  <span{{ attributes.addClass(classes) }}>{{ text }}</span>
+  <{{ tag }}{{ attributes.addClass(classes) }}>{{ text }}</{{ tag }}>
 {% endset %}
 
 {% if url %}
   {% include '@atoms/link/link.twig' with {
     url: url,
     content: content,
-    remove_classes: 'u-text-red',
+    remove_classes: 'u-text-burnt-orange',
   } only %}
 {% else %}
   {{ content }}
