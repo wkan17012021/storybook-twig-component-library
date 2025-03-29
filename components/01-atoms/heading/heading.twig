@@ -3,6 +3,10 @@
   .addClass(classes)
   .removeClass(remove_classes) %}
 
+{% if id %}
+  {% set attributes = attributes.setAttribute('id', id) %}
+{% endif %}
+
 {% set level = level|default(1) %}
 
 <h{{ level }} {{ attributes }}>
@@ -13,6 +17,7 @@
       new_window: new_window,
       attributes: link_attributes,
       classes: link_classes,
+      remove_classes: remove_classes,
     } only %}
   {% else %}
     {% block content %}

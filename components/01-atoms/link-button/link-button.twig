@@ -1,6 +1,6 @@
 {% set attributes = attributes|default(create_attribute()).addClass(classes) %}
 {% set type = type|default('primary') %}
-{% set bg_colour = bg_colour|default('u-bg-orange') %}
+{% set bg_colour = bg_colour|default('u-bg-ochre') %}
 {% set icon_id = icon_id|default('chevron') %}
 
 {% set classes = [
@@ -11,23 +11,32 @@
 ] %}
 
 {% if type == 'primary' %}
-  {% set bg_colour = 'u-bg-orange' %}
+  {% set bg_colour = 'u-bg-ochre' %}
   {% set classes = classes|merge([
     'u-text-black',
     'hover:u-bg-white',
   ]) %}
 {% elseif type == 'primary2' %}
-  {% set bg_colour = 'u-bg-orange' %}
+  {% set bg_colour = 'u-bg-ochre' %}
   {% set classes = classes|merge([
     'u-text-black',
-    'hover:u-bg-red',
+    'hover:u-bg-burnt-orange',
   ]) %}
 {% elseif type == 'secondary' %}
   {% set bg_colour = 'u-bg-dark-blue' %}
   {% set classes = classes|merge([
     'u-text-white',
-    'hover:u-bg-red',
+    'hover:u-bg-burnt-orange',
   ]) %}
+{% elseif type == 'pager-number' %}
+  {% set bg_colour = 'u-bg-white' %}
+  {% set icon_id = false %}
+  {% set classes = classes|merge([
+    'u-border',
+    'u-border-black',
+    'u-border-solid',
+  ]) %}
+
 {% endif %}
 
 {% set classes = classes|merge([bg_colour]) %}
@@ -50,10 +59,11 @@
 
 {% embed '@atoms/link/link.twig' with {
   attributes: attributes,
-  remove_classes: 'u-text-red',
+  remove_classes: 'u-text-burnt-orange',
   icon_id: icon_id,
   icons_url: icons_url,
   icon_width: icon_width,
+  icon_classes: icon_classes,
   content: content,
   type: type,
   url: url,
@@ -67,12 +77,11 @@
       {{ content }}
     {% endif %}
 
+    {% set icon_classes = ['u-text-inherit', 'u-fill-current']|merge(icon_classes|default([])) %}
+
     {% if icon_id %}
       {% include '@atoms/icon/icon.twig' with {
-        classes: [
-          'u-text-inherit',
-          'u-fill-current'
-        ],
+        classes: icon_classes,
         id: icon_id,
         icons_url: icons_url,
         width: icon_width,

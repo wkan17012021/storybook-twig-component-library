@@ -6,7 +6,7 @@ import {bgColourArgType, newWindowArgType} from '../../00-base/utils/arg-types-h
 const args = {
   title: 'Atoms/Link Button',
   args: {
-    url: 'https://unsplash.com/s/photos/travel',
+    url: 'https://www.oneyoungworld.com/',
     content: 'Learn more',
     new_window: true,
     icons_url: import.meta.env.STORYBOOK_ICONS_URL,
@@ -20,6 +20,7 @@ const args = {
       control: 'select',
       options: [
         'icon-only',
+        'pager-number',
         'primary',
         'primary2',
         'secondary',
@@ -29,7 +30,7 @@ const args = {
         type: {summary: 'string'},
       },
     },
-    bg_colour: bgColourArgType('u-bg-orange', {arg: 'type', eq: 'icon-only'}),
+    bg_colour: bgColourArgType('u-bg-ochre', {arg: 'type', eq: 'icon-only'}),
     icon_id: iconStory.argTypes.id,
   },
   parameters: {
@@ -67,4 +68,10 @@ Secondary.args = {
 export const IconOnly = Template.bind({});
 IconOnly.args = {
   type: 'icon-only',
+};
+
+export const PagerNumber = Template.bind({});
+PagerNumber.args = {
+  type: 'pager-number',
+  content: '2',
 };

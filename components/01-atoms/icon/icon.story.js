@@ -25,6 +25,7 @@ export default {
         'close',
         'search',
         'chevron',
+        'download'
       ],
     },
     alt: {

@@ -85,6 +85,6 @@ H6.args = {
 export const H3WithLink = Template.bind({});
 H3WithLink.args = {
   level: 3,
-  url: 'https://storybook.js.org/',
+  url: 'http://www.oneyoungworld.com',
   new_window: true,
 };

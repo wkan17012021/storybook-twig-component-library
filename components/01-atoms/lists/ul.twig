@@ -1,3 +1,4 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
 <ul{{ attributes }}>
   {% for li in lis %}
     {{ li }}

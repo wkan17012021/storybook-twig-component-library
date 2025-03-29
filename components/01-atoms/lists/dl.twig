@@ -1,0 +1,9 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set dt_attributes = attributes|default(create_attribute()).addClass(dt_classes) %}
+{% set dd_attributes = attributes|default(create_attribute()).addClass(dd_classes) %}
+<dl{{ attributes }}>
+  {% for item in content %}
+    <dt{{ dt_attributes }}>{{ item.title }}</dt>
+    <dd{{ dd_attributes }}>{{ item.content }}</dd>
+  {% endfor %}
+</dl>

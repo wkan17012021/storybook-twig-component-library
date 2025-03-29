@@ -5,7 +5,7 @@ export default {
   title: 'Atoms/Link',
   args: {
     content: 'Example link content',
-    url: 'https://storybook.js.org/',
+    url: 'http://www.oneyoungworld.com',
     attributes: new DrupalAttribute().setAttribute('target', '_blank'),
   },
   argTypes: {
