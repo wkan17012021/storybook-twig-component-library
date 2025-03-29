@@ -21,30 +21,30 @@ const Config = {
         },
         // Font size is relative to the font size set on the body with typi as a percentage.
         fontSize: {
-          // Font-size: 14px
-          'xs': '.78rem',
+          // Font-size: 15px
+          'xs': '.74rem',
           // Font-size: 16px
-          'sm': '.89rem',
-          // Font-size: 18px
+          'sm': '.82rem',
+          // Font-size: 20px
           'base': '1rem',
           // Font-size: 20px
-          'lg': '1.12rem',
+          'md': '1rem',
+          // Font-size: 20px
+          'lg': '1.1rem',
           // Font-size: 24px
-          'xl': '1.34rem',
+          'xl': '1.2rem',
           // Font-size: 28px
-          '2xl': '1.56rem',
+          '2xl': '1.4rem',
           // Font-size: 30px
-          '3xl': '1.69rem',
+          '3xl': '1.5rem',
           // Font-size: 34px
-          '4xl': '1.9rem',
+          '4xl': '1.7rem',
           // Font-size: 40px
-          '5xl': '2.23rem',
-          // Font-size: 42px
-          '6xl': '2.35rem',
+          '5xl': '2rem',
+          // Font-size: 43px
+          '6xl': '2.15rem',
           // Font-size: 51px
-          '7xl': '2.84rem',
-          '8xl': '2.84rem',
-          '9xl': '2.84rem',
+          '7xl': '2.55rem',
         },
       },
       screens: {

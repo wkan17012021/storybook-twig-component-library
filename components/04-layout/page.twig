@@ -45,29 +45,11 @@
 #}
 <div class="layout-container">
   {{ page.header }}
-  {{ page.breadcrumb }}
-  {{ page.highlighted }}
-
   <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    <div class="layout-content">
-      {{ page.content }}
-    </div>{# /.layout-content #}
-
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
+    {% if header_404_content %}
+      {{ header_404_content }}
     {% endif %}
-
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
-
+    {{ page.content }}
   </main>
-
   {{ page.footer }}
-</div>{# /.layout-container #}
+</div>

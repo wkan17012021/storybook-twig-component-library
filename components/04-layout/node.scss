@@ -1,0 +1,14 @@
+article {
+  .block {
+    margin: 2rem 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+// Remove duplicate "Search results" heading on search results page.
+body.search--node #block-oyw-content > h2 {
+  display: none;
+}
