@@ -1,8 +1,6 @@
 // Breakpoints mixin.
-@use "./01-variables.scss" as br;
-
 @mixin breakpoint($size) {
-  $breakpoint: map-get(br.$breakpoints, $size);
+  $breakpoint: map-get($breakpoints, $size);
 
   @if $breakpoint {
     @media (min-width: #{$breakpoint}) {

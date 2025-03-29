@@ -95,9 +95,12 @@ export const bgColourArgType = (defaultValue, condition) => {
   return args.bg_color;
 };
 
-export const imageArgType = (description) => {
+export const imageArgType = (description, condition) => {
   if (description) {
     args.image.description = description + args.image.description;
+  }
+  if (condition) {
+    args.image.if = condition;
   }
   return args.image;
 };
@@ -141,11 +144,11 @@ export const alignmentArgType = () => {
   args.side_position.description = args.side_position.description.replace('%type', 'media');
   args.side_position.table.defaultValue.summary = 'left';
   args.side_position.options =
-    [
-      '',
-      'left',
-      'right',
-      'centre',
-    ];
+      [
+        '',
+        'left',
+        'right',
+        'centre',
+      ];
   return args.side_position;
 };

@@ -1,27 +1,24 @@
 // Swiper.
-@use "../tailwind-variables" as vars;
-@use "../00-base/05-mixins.scss" as mixins;
-
 :root {
   --swiper-pagination-bullet-size: 14px;
   --swiper-pagination-bullet-width: 14px;
   --swiper-pagination-bullet-height: 14px;
-  --swiper-theme-color: #{vars.$color-red};
-  --swiper-pagination-bullet-inactive-color: #{vars.$color-orange};
+  --swiper-theme-color: #{$color-burnt-orange};
+  --swiper-pagination-bullet-inactive-color: #{$color-ochre};
   --swiper-pagination-bullet-inactive-opacity: 1;
 }
 
-section.u-bg-orange {
+section.u-bg-ochre {
   --swiper-pagination-bullet-inactive-color: #fff;
 }
 
 section.u-bg-dark-blue {
   --swiper-pagination-bullet-inactive-color: #fff;
-  @include mixins.breakpoint('xl') {
-    --swiper-pagination-bullet-inactive-color: #{vars.$color-orange};
+  @include breakpoint('xl') {
+    --swiper-pagination-bullet-inactive-color: #{$color-ochre};
   }
 }
 
 .swiper-button-lock {
-  display: none !important;
+  display: none!important;
 }
