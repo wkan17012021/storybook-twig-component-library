@@ -1,0 +1,9 @@
+{% set attributes = create_attribute().addClass(['u-mr-[10px]']) %}
+{# @todo use inline-ul.twig template #}
+<ul class="u-flex u-flex-wrap">
+  {% for item in items %}
+    <li{{ attributes }}>
+      {{ item.content }}
+    </li>
+  {% endfor %}
+</ul>

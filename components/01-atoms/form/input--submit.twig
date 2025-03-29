@@ -1,19 +1,57 @@
-{% set attributes = attributes|default(create_attribute()) %}
-
 {# Render the header search submit button with only a search icon. #}
-{% if attributes.value|lower == 'search' %}
+{% set value = value|default(attributes.value) %}
+
+{# Default values for a submit button. #}
+{% if attributes.type == 'submit' %}
+  {% set icon_id = 'chevron' %}
+  {% set tag = 'button' %}
+  {% set icon_width = '35px' %}
+  {% set content = value %}
+{% endif %}
+
+{% if value|lower == 'search' %}
   {% set icon_id = 'search' %}
   {% set tag = 'button' %}
+  {% set content = '' %}
   {% set remove_default_classes = true %}
   {% set icon_width = '35px' %}
-  {% set attributes = attributes.setAttribute('value', '').addClass([
+  {% set attributes = attributes.setAttribute('value', content).addClass([
     'button',
     'u-text-black',
-    'u-bg-orange',
+    'u-bg-ochre',
+  ]) %}
+{% elseif value|lower == 'filter' or value|lower == 'apply' %}
+  {% set icon_id = 'chevron' %}
+  {% set tag = 'button' %}
+  {% set content = value %}
+  {% set icon_width = '35px' %}
+  {% set remove_classes = 'u-text-sm' %}
+  {% set attributes = attributes.setAttribute('value', content).addClass([
+    'button',
+    'u-font-semibold'
+  ]) %}
+{% elseif value|lower == 'clear filters' %}
+  {% set icon_id = false %}
+  {% set tag = 'button' %}
+  {% set content = value %}
+  {% set bg_colour = 'u-bg-transparent' %}
+  {% set remove_classes = 'u-text-sm' %}
+  {% set attributes = attributes.setAttribute('value', content).addClass([
+    'button',
+    'u-underline',
+    'u-pb-0',
+    'u-align-text-top'
   ]) %}
 {% endif %}
+
 
 {% include '@atoms/button/button.twig' with {
   attributes: attributes.setAttribute('type', 'submit').addClass('u-cursor-pointer'),
   tag: tag|default('input'),
+  classes: [
+    'focus-visible:u-outline',
+    'focus-visible:u-outline-[revert]',
+    'focus-visible:u-outline-2',
+    'focus-visible:u-outline-offset-1'
+  ]
 } %}

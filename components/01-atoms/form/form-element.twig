@@ -1,26 +1,51 @@
 {% set attributes = attributes|default(create_attribute()) %}
-{# @todo find better way to remove u-mb-4 for inline forms #}
+{# FYI, title_display & label_display have the same value. #}
+
+{# If the title display is set to inline, webform moves it's value to element['#_title_display']. #}
+{% if element['#_title_display'] %}
+  {% set title_display = element['#_title_display'] %}
+{% endif %}
 
 {% set classes = [
-  title_display in ['after', 'before'] ? 'u-mb-4':'',
   'js-form-item',
   'form-item',
-  'form-type-' ~ type|clean_class,
-  'js-form-type-' ~ type|clean_class,
-  'form-item-' ~ name|clean_class,
-  'js-form-item-' ~ name|clean_class,
-  title_display not in ['after', 'before'] ? 'form-no-label':'',
+  type ? 'form-type-' ~ type|clean_class:'',
+  type ? 'js-form-type-' ~ type|clean_class:'',
+  name ? 'form-item-' ~ name|clean_class:'',
+  name ? 'js-form-item-' ~ name|clean_class:'',
   disabled == 'disabled' ? 'form-disabled':'',
   errors ? 'form-item--error':'',
   'u-max-w-full',
-] %}
+  'u-flex',
+  'u-w-full',
+  'md:u-w-auto',
+]|merge(classes|default([])) %}
+
+{% if title_display == 'inline' or title_display == 'after' %}
+  {% set extra_classes = [
+    'u-flex-col',
+    'u-gap-1.5',
+    'u-items-start',
+    'md:u-flex-row',
+    'md:u-items-center',
+    'md:u-gap-4',
+  ] %}
+{% elseif title_display == 'before' %}
+  {% set extra_classes = [
+    'u-flex-col',
+    'u-items-start',
+    'u-gap-1.5',
+  ] %}
+{% else %}
+  {% set extra_classes = 'form-no-label' %}
+{% endif %}
 
 {% set description_classes = [
   'description',
   description_display == 'invisible' ? 'u-sr-only':'',
 ] %}
-<div{{ attributes.addClass(classes) }}>
-  {% if label_display in ['before', 'invisible'] %}
+<div{{ attributes.addClass(classes).addClass(extra_classes).setAttribute('data-title-display', title_display|clean_class) }}>
+  {% if label_display in ['inline', 'before', 'invisible'] %}
     {{ label }}
   {% endif %}
   {% if prefix is not empty %}

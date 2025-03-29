@@ -1,12 +1,73 @@
-{% set attributes = attributes|default(create_attribute())
-  .setAttribute('type', type|default('text'))
-  .addClass(classes)
-  .addClass([
-    'u-block',
-    'u-bg-eggshell',
-    'u-px-4',
-    'u-py-2',
-    'u-font-light',
-    'u-max-w-full',
+{% set input_type = input_type|default(attributes.toArray()['type']) %}
+{% set focus_visible_classes = [
+  'focus-visible:u-outline',
+  'focus-visible:u-outline-[revert]',
+  'focus-visible:u-outline-2',
+  'focus-visible:u-outline-offset-1'
+] %}
+{% set text_input_classes = [
+  'u-block',
+  'u-font-light',
+  'u-bg-neutral-grey',
+  'u-px-4',
+  'u-py-2',
+  'u-w-full',
+  'md:u-w-auto',
+]|merge(focus_visible_classes) %}
+{% set checkbox_classes = [
+  'u-w-5',
+  'u-h-5',
+  'u-inline-block',
+]|merge(focus_visible_classes) %}
+
+{% if input_type in ['text', 'password', 'email', 'date', 'number', 'time', 'tel', 'url'] %}
+  {% set classes = text_input_classes %}
+{% endif %}
+
+{% if input_type == 'search' %}
+  {% set classes = text_input_classes|merge([
+    'placeholder:u-text-[#321F1F]',
+    'u-text-sm',
+    'u-py-0',
+    'u-h-[35px]',
   ]) %}
-<input{{ attributes }}/>{{ children }}
+  {% set attributes = attributes.setAttribute('placeholder', 'Search'|t).setAttribute('required', 'true') %}
+
+  {# This should be for the header search only. #}
+  {# @todo target the header search field is a more robust way. #}
+  {% if element['#title_display'] == 'invisible' %}
+    {% set classes = classes|merge([
+      'u-min-w-[16rem]',
+      'lg:u-min-w-full',
+      'u-max-w-full',
+      'invalid:lg:u-w-[5.8rem]',
+      'focus:lg:u-w-[17rem]',
+      'valid:lg:u-w-[17rem]',
+      'u-transition-all',
+      '[field-sizing:content]',
+      'lg:[field-sizing:unset]',
+    ]) %}
+  {% endif %}
+{% endif %}
+
+{% if input_type == 'file' %}
+  {% set classes = [
+    'js-form-file',
+    'form-file',
+    'u-w-full',
+    'md:u-w-auto',
+  ] %}
+
+{% endif %}
+
+{% if input_type in ['checkbox', 'radio'] %}
+  {% set classes = checkbox_classes %}
+{% endif %}
+
+{% if attributes.hasClass('error') %}
+  {# Use outline to highlight a field in error which switches to the browser default colour on :focus-visible
+  and thus we avoid having 2 colour highlights #}
+  {% set classes = classes|merge(['u-outline', 'u-outline-2', 'u-outline-offset-1', 'u-outline-burnt-orange']) %}
+{% endif %}
+
+<input{{ attributes.addClass(classes) }}/>{{ children }}

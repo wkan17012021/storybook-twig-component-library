@@ -1,5 +1,11 @@
-{% set classes = [
+{# Flex layout is needed when the container appears to be inline to position inline the submit button e.g. search form
+ and items-end to align the button to the bottom of the element and stop it growing. #}
+{% set attributes = attributes.addClass(classes).addClass([
   has_parent ? 'js-form-wrapper':'',
   has_parent ? 'form-wrapper':'',
-] %}
-<div{{ attributes.addClass(classes) }}>{{ children }}</div>
+  attributes.hasClass('container-inline') ? 'u-flex u-items-end':'',
+  'u-w-full',
+  'md:u-w-auto',
+]).removeClass('container-inline') %}
+
+<div{{ attributes }}>{{ children }}</div>

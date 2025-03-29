@@ -1,0 +1,12 @@
+// The margin for the submit button is put here so it can be removed for the header search form.
+form .form-actions {
+  margin-top: 1.2rem;
+}
+
+// Remove margin for:
+// - search form block found on the 404 & search results page
+// - header search form
+form[id^="search-block-form"] .form-actions,
+.search-block-form form .form-actions {
+  margin-top: 0;
+}

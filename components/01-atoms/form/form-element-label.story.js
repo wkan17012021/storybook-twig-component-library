@@ -18,6 +18,11 @@ const Template = args => template({...args});
 
 export const Default = Template.bind({});
 
+export const RequiredField = Template.bind({});
+RequiredField.args = {
+  title: 'This is a required field.',
+  required: true,
+}
 
 
 

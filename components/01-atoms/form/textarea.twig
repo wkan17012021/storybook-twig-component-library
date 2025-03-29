@@ -3,13 +3,25 @@
 
 {% set classes = [
   'u-block',
-  'u-bg-eggshell',
+  'u-bg-neutral-grey',
   'u-px-4',
   'u-py-2',
   'u-font-light',
   'u-min-h-[140px]',
-  'u-max-w-full',
+  'focus-visible:u-outline',
+  'focus-visible:u-outline-[revert]',
+  'focus-visible:u-outline-2',
+  'focus-visible:u-outline-offset-1',
+  'u-w-full',
+  'md:u-w-auto',
 ] %}
+
+{% if attributes.hasClass('error') %}
+  {# Use outline to highlight a field in error which switches to the browser default colour on :focus-visible
+  and thus we avoid having 2 colour highlights #}
+  {% set classes = classes|merge(['u-outline', 'u-outline-2', 'u-outline-offset-1', 'u-outline-burnt-orange']) %}
+{% endif %}
+
 <div{{ wrapper_attributes }}>
   <textarea{{ attributes.addClass(classes) }}>{{ value }}</textarea>
 </div>

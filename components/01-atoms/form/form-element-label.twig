@@ -2,14 +2,20 @@
 
 {% set attributes = attributes.addClass([
   input_type == 'checkbox' or input_type == 'radio' ? 'u-inline-block' : 'u-block',
-  'u-pb-1',
   'u-font-semibold',
   title_display == 'after' ? 'option':'',
   title_display == 'invisible' ? 'u-sr-only':'',
 ]) %}
 
 {% if required %}
-  {% set attributes = attributes.addClass(['js-form-required', 'form-required']) %}
+  {% set attributes = attributes.addClass([
+    'js-form-required',
+    'form-required',
+    "after:u-content-['*']",
+    'after:u-align-text-bottom',
+    'after:u-text-burnt-orange',
+    'after:u-ml-0.5',
+  ]) %}
 {% endif %}
 
 {% if title is not empty or required -%}

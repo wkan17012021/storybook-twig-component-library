@@ -1,3 +1,30 @@
-<form{{ attributes.addClass(classes) }}>
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+
+{% set inline_form = inline_form ?? false %}
+{% set search_form = search_form ?? false %}
+
+{% if inline_form %}
+  {% set extra_classes = [
+    'u-flex',
+    'u-flex-col',
+    'u-items-start',
+    'u-flex-wrap',
+    'u-gap-5',
+    'lg:u-items-end',
+    'lg:u-flex-row',
+    'lg:u-justify-start',
+    '2xl:u-justify-center',
+  ] %}
+{% elseif not search_form %}
+  {% set extra_classes = [
+    'u-flex',
+    'u-flex-col',
+    'u-gap-3',
+  ] %}
+{% endif %}
+
+<form{{ attributes.addClass(extra_classes) }}>
+  {{ title_prefix }}
   {{ children }}
+  {{ title_suffix }}
 </form>

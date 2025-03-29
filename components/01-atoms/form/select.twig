@@ -1,0 +1,74 @@
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% set select_container_classes = [
+  'select__container',
+  'u-bg-white',
+  'u-relative',
+  'u-w-full',
+  'md:u-w-auto',
+] %}
+
+{% set classes = [
+  'u-block',
+  'u-cursor-pointer',
+  'u-appearance-none',
+  'u-bg-transparent',
+  'u-border',
+  'u-border-black',
+  'u-border-solid',
+  'u-rounded-none',
+  'u-py-[.45rem]',
+  'u-pl-4',
+  'u-pr-[60px]',
+  'u-m-0',
+  'u-transition',
+  'u-duration-300',
+  'u-ease',
+  'u-shadow-sm',
+  'focus:u-outline-none',
+  'focus:u-border-grey-blue',
+  'focus:u-shadow-md',
+  'u-w-full',
+  'md:u-w-auto',
+] %}
+
+{% if attributes.hasClass('error') %}
+  {# Use outline to highlight a field in error which switches to the browser default colour on :focus-visible
+  and thus we avoid having 2 colour highlights #}
+  {% set classes = classes|merge(['u-outline', 'u-outline-2', 'u-outline-offset-1', 'u-outline-burnt-orange']) %}
+{% endif %}
+
+{% apply spaceless %}
+  <div{{ create_attribute().addClass(select_container_classes) }}>
+    <select{{ attributes.addClass(classes) }}>
+      {% for option in options %}
+        {% if option.type == 'optgroup' %}
+          <optgroup label="{{ option.label }}">
+            {% for sub_option in option.options %}
+              <option
+                  value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+            {% endfor %}
+          </optgroup>
+        {% elseif option.type == 'option' %}
+          <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+
+    {% include '@atoms/icon/icon.twig' with {
+      classes: [
+        'u-absolute',
+        'u-top-1/2',
+        'u-transform',
+        'u--translate-y-1/2',
+        'u-right-[18px]',
+        'u-pointer-events-none'
+      ],
+      id: 'select-chevron',
+      icons_url: icons_url,
+      width: '24px',
+      height: '16px'
+    } only %}
+
+  </div>
+{% endapply %}

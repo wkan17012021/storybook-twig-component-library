@@ -4,7 +4,7 @@
 {% if bg_colour is defined and bg_colour is empty %}
   {% set bg_colour = 'u-bg-transparent' %}
 {% else %}
-  {% set bg_colour = bg_colour|default('u-bg-orange') %}
+  {% set bg_colour = bg_colour|default('u-bg-ochre') %}
 {% endif %}
 
 {% if content is not defined or content is empty %}
@@ -27,7 +27,7 @@
   {% set attributes = attributes.addClass(classes) %}
 {% endif %}
 
-<{{ tag }}{{ attributes }}>
+<{{ tag }}{{ attributes.removeClass(remove_classes) }}>
 {% block content %}
 
   {% if not icon_only %}
@@ -44,6 +44,10 @@
       icons_url: icons_url,
       width: icon_width,
     } only %}
+  {% endif %}
+
+  {% if icon_content %}
+    {{ icon_content }}
   {% endif %}
 
 {% endblock %}

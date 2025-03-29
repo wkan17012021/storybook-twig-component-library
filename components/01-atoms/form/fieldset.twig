@@ -20,7 +20,7 @@
   'u-border-solid',
   'u-border-grey',
   'u-rounded-t-sm',
-  'u-bg-eggshell',
+  'u-bg-neutral-grey',
   'u-p-2',
   'u-mb-4',
 ]) %}
@@ -30,7 +30,7 @@
   <legend{{ legend_attributes }}>
     <span>{{ legend.title }}</span>
   </legend>
-  <div class="fieldset-wrapper u-pl-4">
+  <div class="fieldset-wrapper u-my-4 u-pl-4 u-flex u-flex-col u-gap-4">
     {% if description_display == 'before' and description.content %}
       <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
     {% endif %}
