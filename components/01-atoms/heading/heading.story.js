@@ -1,42 +1,35 @@
-import template from './heading.twig';
-import {newWindowArgType} from '../../00-base/utils/arg-types-helper.js';
+import template from "./heading.twig";
+import { newWindowArgType } from "../../00-base/utils/arg-types-helper.js";
 
 export default {
-  title: 'Atoms/Heading',
+  title: "Atoms/Heading",
   args: {
     level: 1,
-    content: 'Example heading content',
+    content: "Example heading content",
   },
   argTypes: {
     level: {
-      type: {name: 'string', required: true},
-      description: 'The heading level (1-6) to use.',
+      type: { name: "string", required: true },
+      description: "The heading level (1-6) to use.",
       table: {
-        defaultValue: {summary: 1},
-        type: {summary: 'string'},
+        defaultValue: { summary: 1 },
+        type: { summary: "string" },
       },
-      control: 'select',
-      options: [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-      ],
+      control: "select",
+      options: [1, 2, 3, 4, 5, 6],
     },
     content: {
-      type: {name: 'string', required: true},
-      description: 'The heading content.',
+      type: { name: "string", required: true },
+      description: "The heading content.",
       table: {
-        type: {summary: 'string'},
+        type: { summary: "string" },
       },
     },
     url: {
-      type: {name: 'string'},
-      description: 'The href value for an optional anchor on the heading.',
+      type: { name: "string" },
+      description: "The href value for an optional anchor on the heading.",
       table: {
-        type: {summary: 'string'},
+        type: { summary: "string" },
       },
     },
     new_window: newWindowArgType(),
@@ -44,13 +37,14 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Each heading level tag (1-6) is styled natively plus a CSS class exists for each level which applies the same style (`.h1`, `.h2`, `.h3`, `.h4`, `.h5`, `.h6`).',
+        component:
+          "Each heading level tag (1-6) is styled natively plus a CSS class exists for each level which applies the same style (`.h1`, `.h2`, `.h3`, `.h4`, `.h5`, `.h6`).",
       },
     },
   },
 };
 
-const Template = args => template({...args});
+const Template = (args) => template({ ...args });
 
 export const H1 = Template.bind({});
 H1.args = {
@@ -85,6 +79,6 @@ H6.args = {
 export const H3WithLink = Template.bind({});
 H3WithLink.args = {
   level: 3,
-  url: 'http://www.oneyoungworld.com',
+  url: "http://www.google.com",
   new_window: true,
 };

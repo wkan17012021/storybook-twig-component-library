@@ -1,6 +1,6 @@
 import cardTemplate from './profile-card.twig';
 import cardOverlayTemplate from './profile-card-overlay.twig';
-import image from './dora-palfi.png';
+import image from './profile-iamge.jpeg';
 import fieldRichText from '../../01-atoms/fields/field--rich-text.twig';
 import socialLinksStory from '../social-links/social-links.story.js';
 import paragraphTemplate from '../../01-atoms/text/paragraph.twig';
@@ -67,6 +67,6 @@ ProfileCardOverlayWithSocialLinks.args = {
   social_links: {
     x: 'https://twitter.com',
     linkedin: 'https://linkedin.com',
-    website: 'https://www.oneyoungworld.com',
+    website: 'https://www.google.com',
   },
 }

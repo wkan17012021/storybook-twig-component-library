@@ -24,8 +24,8 @@ export default {
       remove_classes: ['u-text-burnt-orange'],
     }),
     company_email: linkTemplate({
-      content: 'information@oneyoungworld.com',
-      url: 'mailto:information@oneyoungworld.com',
+      content: 'information@google.com',
+      url: 'mailto:information@google.com',
       remove_classes: ['u-text-burnt-orange'],
       classes: ['u-underline', 'u-break-words'],
     }),
