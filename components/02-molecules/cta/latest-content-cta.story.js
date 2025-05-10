@@ -7,7 +7,7 @@ import DrupalAttribute from 'drupal-attribute';
 export default {
   title: 'Molecules/CTA/Latest Content CTA',
   args: {
-    title: 'OYW Academy',
+    title: 'Test Title',
     content: 'Etiam magna lectus, tempor non mollis sit amet, laoreet id urna. Sed vulputate sem id enim ultrices,',
     image: ctaImage1,
     attributes: new DrupalAttribute().setAttribute('data-url', '#'),

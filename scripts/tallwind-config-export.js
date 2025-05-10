@@ -13,11 +13,11 @@ const ThemeBreakpoints = () => {
 
   const BreakpointsYmlPath = path.join(
       process.cwd(),
-      'oyw.breakpoints.yml',
+      'myTheme.breakpoints.yml',
   );
 
   const BreakpointsYmlExport = {
-    'oyw.minimum': {
+    'myTheme.minimum': {
       label: 'minimum',
       mediaQuery: '',
       weight: 0,
@@ -26,7 +26,7 @@ const ThemeBreakpoints = () => {
   };
 
   _.forEach(tailwindConfig.theme.screens, (value, key) => {
-    BreakpointsYmlExport[`oyw.${key}`] = {
+    BreakpointsYmlExport[`myTheme.${key}`] = {
       label: key,
       mediaQuery: `all and (min-width:${value})`,
       weight: 0,

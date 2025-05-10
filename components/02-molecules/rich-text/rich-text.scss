@@ -26,11 +26,11 @@
   }
 
   a {
-    &:not(.oyw-link-button) {
+    &:not(.mytheme-link-button) {
       @apply u-border-b-[1px] u-border-burnt-orange u-text-burnt-orange visited:u-border-white visited:u-text-grey-blue;
     }
 
-    &.oyw-link-button {
+    &.mytheme-link-button {
       @apply u-inline-block u-px-3 u-py-2 u-text-sm u-bg-ochre u-text-black u-no-underline hover:u-bg-burnt-orange hover:u-no-underline;
     }
   }

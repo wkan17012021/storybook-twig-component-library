@@ -4,10 +4,10 @@ import iconStory from '../../01-atoms/icon/icon.story.js';
 export default {
   title: 'Molecules/CTA/Standard CTA',
   args: {
-    title: 'OYW Academy',
-    content: 'The One Young World Academy, will help young leaders tackle some of the biggest challenges facing our world through a new online learning experience.',
+    title: 'Test Title',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     cta_button: {
-      url: 'https://www.oneyoungworld.com/',
+      url: 'https://www.google.com/',
       content: 'Read more',
       new_window: true,
     },

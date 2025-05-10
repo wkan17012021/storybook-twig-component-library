@@ -6,7 +6,7 @@
  * All other styles should be put in the twig templates as Storybook classes.
  */
 
-#myThemeMobileMenuToggle.open .toggle-line {
+ #mythemeMobileMenuToggle.open .toggle-line {
   &:first-child {
     @apply u-rotate-45 u-translate-y-0;
   }
@@ -20,22 +20,22 @@
   }
 }
 
-#myThemeMobileMenu.active {
+#mythemeMobileMenu.active {
   z-index: 999;
   display: block;
   opacity: 1;
 }
 
-#myThemeMobileMenu .mobile-menu .submenu,
-#myThemeMobileMenu .mobile-menu li.has-child ul.submenu {
+#mythemeMobileMenu .mobile-menu .submenu,
+#mythemeMobileMenu .mobile-menu li.has-child ul.submenu {
   display: none;
 }
 
-#myThemeMobileMenu .mobile-menu li.active > .submenu {
+#mythemeMobileMenu .mobile-menu li.active > .submenu {
   right: auto;
 }
 
-#myThemeMobileMenu .mobile-menu li.has-child > a {
+#mythemeMobileMenu .mobile-menu li.has-child > a {
   position: relative;
   &::after {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgOCAxNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cGF0aCBkPSJNOCA3TDAuNSAxMy4wNjIyTDAuNTAwMDAxIDAuOTM3ODIyTDggN1oiPjwvcGF0aD4KPC9zdmc+Cg==");
@@ -52,7 +52,7 @@
   }
 }
 
-#myThemeMobileMenu .mobile-menu li.has-child.active > a::after {
+#mythemeMobileMenu .mobile-menu li.has-child.active > a::after {
   @apply u-rotate-90 u-transition-all;
 }
 

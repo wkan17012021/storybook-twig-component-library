@@ -23,7 +23,7 @@ export default {
             <a href="https://www.madeupwebsite.com/" target="_blank">this is a link</a> volutpat ipsum dictumst et
             dignissim sed turpis. <a href="https://www.oneyoungworld.com/" target="_blank">this is a visited link</a>
             ac neque amet, pharetra, semper. Ipsum pharetra gravida est sit sodales duis lectus.</p>
-            <p><a href="https://www.madeupwebsite.com/" target="_blank" class="oyw-link-button">This is a link button</a></p>
+            <p><a href="https://www.madeupwebsite.com/" target="_blank" class="myTheme-link-button">This is a link button</a></p>
             <h2>Bulleted list</h2>
             <ul>
               <li>Long list item hendrerit tincidunt mauris diam eget leo vitae metus tortor. Penatibus facilisi nullam sagittis elementum eros purus torquent sapien.</li>

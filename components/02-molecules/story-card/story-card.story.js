@@ -1,5 +1,5 @@
 import template from './story-card.twig';
-import image from './dora-palfi.png';
+import image from './image.jpg';
 import fieldRichText from '../../01-atoms/fields/field--rich-text.twig';
 import paragraphTemplate from '../../01-atoms/text/paragraph.twig';
 
