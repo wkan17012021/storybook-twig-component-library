@@ -1,29 +1,31 @@
 {% set attributes = attributes|default(create_attribute())
   .addClass(classes)
   .addClass([
-  'profile-card-overlay',
-  'u-hidden',
-  'u-absolute',
-  'u-inset-0',
-  'u-z-30',
-  'u-bg-green',
-  'u-p-2',
-  'sm:u-p-8',
-  'u-overflow-x-hidden',
-  'u-overflow-y-auto',
-  'u-text-black',
-  'u--left-2',
-  'u-w-[calc(100%+1rem)]',
-  'u-max-w-[783px]',
-  'sm:u--left-8',
-  'sm:u-w-[calc(100%+4rem)]',
-  'lg:u-w-[83%]',
-  'lg:u-top-auto',
-  'lg:u-left-auto',
-]) %}
+    'profile-card-overlay',
+    'u-hidden',
+    'u-absolute',
+    'u-inset-0',
+    'u-z-30',
+    'u-bg-green',
+    'u-p-2',
+    'sm:u-p-8',
+    'u-overflow-x-hidden',
+    'u-overflow-y-auto',
+    'u-text-black',
+    'u--left-2',
+    'u-w-[calc(100%+1rem)]',
+    'u-max-w-[783px]',
+    'sm:u--left-8',
+    'sm:u-w-[calc(100%+4rem)]',
+    'lg:u-w-[83%]',
+    'lg:u-top-auto',
+    'lg:u-left-auto',
+    'lg:u-right-[calc((100vw-1200px)/2]',
+    'u-min-h-[60%]',
+  ]) %}
 
 <div{{ attributes }}>
-  <div class="u-flex u-flex-wrap md:u-gap-x-[8%]">
+  <div class="u-flex u-flex-wrap md:u-gap-x-[6%]">
     <div class="md:u-flex-col md:u-w-[24%]">
       {% include '@atoms/image/image.twig' with {
         src: image,
@@ -35,6 +37,15 @@
         ],
         responsive: false,
       } only %}
+      <div class="u-hidden md:u-block u-mt-6">
+        {% include '@molecules/social-links/social-links.twig' with {
+          icons_url: icons_url,
+          links: social_links,
+          bg_colour: 'u-bg-ochre',
+        } only %}
+      </div>
+    </div>
+    <div class="u-mb-4 md:u-mb-0 md:u-w-[51%]">
       {% include '@atoms/heading/heading.twig' with {
         level: 4,
         content: title,
@@ -44,16 +55,25 @@
         content: job,
         classes: 'u-mb-4',
       } only %}
-    </div>
-    <div class="u-mb-4 md:u-mb-0 md:u-w-[51%]">
       {{ bio }}
+      {% if bio|render and profile_url %}
+        <div class="u-mt-6">
+          {% include '@atoms/link-button/link-button.twig' with {
+            url: profile_url,
+            content: 'Read more'|t,
+            icons_url: icons_url,
+          } only %}
+        </div>
+      {% endif %}
+      <div class="u-block md:u-hidden u-mt-10">
+        {% include '@molecules/social-links/social-links.twig' with {
+          icons_url: icons_url,
+          links: social_links,
+          bg_colour: 'u-bg-ochre',
+        } only %}
+      </div>
     </div>
   </div>
-  {% include '@molecules/social-links/social-links.twig' with {
-    icons_url: icons_url,
-    links: social_links,
-    bg_colour: 'u-bg-orange',
-  } only %}
   {% include '@atoms/button/button.twig' with {
     icons_url: icons_url,
     icon_id: 'close',

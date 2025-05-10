@@ -1,0 +1,27 @@
+{% set classes = [
+  'views-view-responsive-grid',
+  'views-view-responsive-grid--' ~ options.alignment,
+] %}
+
+{# Only allow grid style settings from the View if the alignment is vertical.
+For horizontal alignment we hardcode it in SCSS. #}
+{% if options.alignment == 'vertical' %}
+  {% set responsive_grid_styles = [
+    '--views-responsive-grid--column-count:' ~ options.columns ~ ';',
+    '--views-responsive-grid--cell-min-width:' ~ options.cell_min_width ~ 'px;',
+    '--views-responsive-grid--layout-gap:' ~ options.grid_gutter ~ 'px;',
+  ] %}
+{% endif %}
+
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+<div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
+  {% for item in items %}
+    <div class="views-view-responsive-grid__item">
+      <div class="views-view-responsive-grid__item-inner u-flex u-h-full">
+        {{- item.content -}}
+      </div>
+    </div>
+  {% endfor %}
+</div>

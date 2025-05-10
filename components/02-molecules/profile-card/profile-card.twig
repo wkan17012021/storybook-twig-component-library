@@ -4,10 +4,14 @@
   'u-text-black',
   'u-relative',
   'u-overflow-hidden',
-  'u-min-w-[220px]',
-  'u-w-full',
-  'u-min-h-[410px]',
-  'md:u-min-h-[556px]',
+  'u-w-auto',
+  'sm:u-w-[370px]',
+  'md:u-w-[calc((100%-1.75rem-2rem)/2)]',
+  'lg:u-w-[370px]',
+  'xl:u-w-[356px]',
+  '2xl:u-w-[370px]',
+  'u-min-h-[436px]',
+  'sm:u-min-h-[556px]',
   'u-bg-top',
 ]) %}
 
@@ -19,13 +23,17 @@
 {% endif %}
 
 <div{{ attributes }}>
-  <div class="card__title u-min-h-[25%] u-absolute u-bottom-0 u-left-0 u-right-0 u-p-6 u-bg-green u-opacity-85">
+  <div
+      class="card__title u-h-[8.8rem] sm:u-h-[9.5rem] u-absolute u-bottom-0 u-left-0 u-right-0 u-p-6 u-bg-green u-opacity-85">
     {% include '@atoms/heading/heading.twig' with {
-      classes: 'u-leading-tight',
+      classes: ['u-leading-tight', 'u-line-clamp-2', 'u-h-[2.5em]'],
       level: 4,
       content: title,
     } only %}
+    {# Job title is absolutely positioned so that it's not affeced by the changable height of the heading across
+    screen sizes. #}
     {% include '@atoms/text/paragraph.twig' with {
+      classes: ['u-line-clamp-1', 'u-absolute', 'u-left-[1.5rem]', 'u-right-[1.5rem]', 'u-bottom-[1.5rem]'],
       content: job,
     } only %}
   </div>
@@ -38,4 +46,5 @@
   bio: bio,
   social_links: social_links,
   icons_url: icons_url,
+  profile_url: profile_url,
 } only %}

@@ -1,0 +1,48 @@
+/**
+ * A copy of core/modules/views/css/views-responsive-grid.css so that the grid will work in Storybook,
+ * where "attach_library" doesn't work.
+ */
+
+.views-view-responsive-grid {
+
+  // Horizontal alignment does not accept grid style settings from the View.
+  &.views-view-responsive-grid--horizontal {
+    --views-responsive-grid--layout-gap: 1.75rem;
+    --views-responsive-grid--column-count: 1;
+    --views-responsive-grid-item--width: 100%;
+    @include breakpoint('sm') {
+      --views-responsive-grid--column-count: 2;
+      --views-responsive-grid-item--width: calc((100% - (var(--views-responsive-grid--layout-gap) * var(--views-responsive-grid--column-count))) / var(--views-responsive-grid--column-count));
+    }
+    @include breakpoint('md') {
+      --views-responsive-grid--layout-gap: 2rem;
+    }
+    @include breakpoint('xl') {
+      --views-responsive-grid--layout-gap: 2rem;
+      --views-responsive-grid--column-count: 3;
+    }
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--views-responsive-grid-item--width), 1fr));
+    gap: var(--views-responsive-grid--layout-gap);
+  }
+
+  // Vertical alignment does accept grid style settings from the View.
+  &.views-view-responsive-grid--vertical {
+    --views-responsive-grid--layout-gap: 10px; /* Will be overridden by an inline style. */
+    --views-responsive-grid--column-count: 4; /* Will be overridden by an inline style. */
+    --views-responsive-grid--cell-min-width: 100px; /* Will be overridden by an inline style. */
+
+    margin-bottom: calc(var(--views-responsive-grid--layout-gap) * -1); /* Offset the bottom row's padding. */
+    column-width: var(--views-responsive-grid--cell-min-width);
+    column-count: var(--views-responsive-grid--column-count);
+    column-gap: var(--views-responsive-grid--layout-gap);
+
+    .views-view-responsive-grid__item > * {
+      padding-bottom: var(--views-responsive-grid--layout-gap);
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+  }
+}
+

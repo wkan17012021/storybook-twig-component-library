@@ -1,0 +1,148 @@
+{% set attributes = create_attribute()
+  .setAttribute('id', 'pager')
+  .setAttribute('role', 'navigation')
+  .setAttribute('aria-label', heading_id)
+  .addClass('pager')
+  .addClass(classes)
+  .removeClass(remove_classes) %}
+
+{# Common classes for page items both active/non-active #}
+{% set page_item_classes = [
+  'u-inline-flex',
+  'u-justify-center',
+  'u-items-center',
+  'u-font-medium',
+  'u-min-w-[2.5rem]',
+  'u-min-h-[2.5rem]',
+  'u-leading-none'
+] %}
+
+{% set current_page_item_attributes = create_attribute().addClass([
+  'button',
+  'u-px-3',
+  'u-py-2',
+  'u-text-sm',
+  'u-text-white',
+  'u-bg-burnt-orange',
+  'u-border',
+  'u-border-burnt-orange',
+  'u-border-solid'
+]).addClass(page_item_classes) %}
+
+{% if items %}
+  {% set pager__list_container_classes = [
+    'pager__items',
+    'js-pager__items',
+    'u-flex',
+    'u-flex-wrap',
+    'u-justify-center',
+    'u-items-center',
+    'u-gap-5',
+    'u-mx-auto',
+    'u-mt-14',
+    'u-mb-40',
+  ] %}
+  <nav{{ attributes }}>
+    {% if pagination_heading_level %}
+      {# Wrapping the heading in if stmt so it doesn't render in storybook but will display hidden in drupal #}
+
+      {% set heading_level = pagination_heading_level|replace({'h': ''}) %}
+      {% include '@atoms/heading/heading.twig' with {
+        level: heading_level,
+        content: 'Pagination'|t,
+        classes: 'visually-hidden',
+        id: heading_id
+      } only %}
+    {% endif %}
+
+    {# This should really use ul.twig atom #}
+    <ul {{ create_attribute().addClass(pager__list_container_classes) }}>
+      {# Print first item if we are not on the first page. #}
+      {% if items.first %}
+        <li class="pager__item pager__item--first">
+          {% include '@atoms/link-button/link-button.twig' with {
+            attributes: items.first.attributes|without('href', 'title').setAttribute('title', 'Go to first page'|t),
+            classes: 'u-font-medium u-flex-row-reverse u-min-h-[2.5rem]',
+            content: items.first.text|default('First'|t),
+            url: items.first.href,
+            icons_url: icons_url,
+            icon_classes: ['u-rotate-180'],
+            type:'primary2'
+          } only %}
+        </li>
+      {% endif %}
+
+      {# Print previous item if we are not on the first page. #}
+      {% if items.previous %}
+        <li class="pager__item pager__item--previous">
+          {% include '@atoms/link-button/link-button.twig' with {
+            attributes: items.previous.attributes|without('href', 'title', 'rel').setAttribute('rel', 'prev').setAttribute('title', 'Go to previous page'|t),
+            classes: 'u-font-medium u-flex-row-reverse u-min-h-[2.5rem]',
+            content: items.previous.text|default('Previous'|t),
+            url: items.previous.href,
+            icons_url: icons_url,
+            icon_classes: ['u-rotate-180'],
+            type:'primary2'
+          } only %}
+        </li>
+      {% endif %}
+      {# Add an ellipsis if there are further previous pages. #}
+      {% if ellipses.previous %}
+        <li class="pager__item pager__item--ellipsis u-hidden md:u-block" role="presentation">&hellip;</li>
+      {% endif %}
+      {# Now generate the actual pager piece. #}
+      {% for key, item in items.pages %}
+        <li class="pager__item{{ current == key ? ' is-active' : '' }} u-hidden md:u-block">
+          {% if current == key %}
+            {% set title = 'Current page'|t %}
+            <span{{ current_page_item_attributes.setAttribute('title', title).setAttribute('aria-label', title) }}>{{- key -}}</span>
+          {% else %}
+            {% set title = 'Go to page @key'|t({'@key': key}) %}
+
+            {% include '@atoms/link-button/link-button.twig' with {
+              attributes: item.attributes|without('href', 'title').setAttribute('title', title),
+              type: 'pager-number',
+              classes: page_item_classes,
+              content: key,
+              url: item.href,
+              remove_classes: 'u-inline-block'
+            } only %}
+
+          {% endif %}
+        </li>
+      {% endfor %}
+
+      {# Add an ellipsis if there are further next pages. #}
+      {% if ellipses.next %}
+        <li class="pager__item pager__item--ellipsis u-hidden md:u-block" role="presentation">&hellip;</li>
+      {% endif %}
+
+      {# Print next item if we are not on the last page. #}
+      {% if items.next %}
+        <li class="pager__item pager__item--next">
+          {% include '@atoms/link-button/link-button.twig' with {
+            attributes: items.next.attributes|without('href', 'title', 'rel').setAttribute('rel', 'next').setAttribute('title', 'Go to next page'|t),
+            classes: 'u-font-medium u-min-h-[2.5rem]',
+            content: items.next.text|default('Next'|t),
+            url: items.next.href,
+            icons_url: icons_url,
+            type: 'primary2'
+          } only %}
+        </li>
+      {% endif %}
+      {# Print last item if we are not on the last page. #}
+      {% if items.last %}
+        <li class="pager__item pager__item--last">
+          {% include '@atoms/link-button/link-button.twig' with {
+            attributes: items.last.attributes|without('href', 'title').setAttribute('title', 'Go to last page'|t),
+            classes: 'u-font-medium u-min-h-[2.5rem]',
+            content: items.last.text|default('Last'|t),
+            url: items.last.href,
+            icons_url: icons_url,
+            type: 'primary2'
+          } only %}
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

@@ -1,0 +1,19 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set attributes = attributes.addClass([
+  'press--contact--info',
+  'u-text-white',
+]) %}
+
+<div{{ attributes }}>
+  <div class="u-px-4 u-py-2 u-bg-dark-blue">
+    {{ title }}
+  </div>
+  <div class="u-p-4 u-flex u-flex-col u-gap-2 u-bg-grey-blue">
+    <div>
+      <span class="u-font-medium">{{ 'PR Email: '|t }}</span>{{ email }}
+    </div>
+    <div>
+      <span class="u-font-medium">{{ 'PR Tel: '|t }}</span>{{ telephone }}
+    </div>
+  </div>
+</div>
