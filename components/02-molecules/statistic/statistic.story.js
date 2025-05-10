@@ -3,9 +3,9 @@ import template from './statistic.twig';
 export default {
   title: 'Molecules/Statistic',
   args: {
-    statistic: '68%',
-    heading: 'The benefits of travel',
-    body: '68% of people stated that they were more positive after returning from a vacation.',
+    statistic: '42M',
+    heading: 'Single stat title',
+    body: 'People directly impacted by Ambassador-led projects featured in our Impact Reports since 2010',
   },
   argTypes: {
     statistic: {

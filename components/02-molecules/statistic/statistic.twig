@@ -1,7 +1,10 @@
-{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+{% set attributes = attributes|default(create_attribute())
+  .addClass(classes)
+  .addClass(['md:u-w-[47%]', 'xl:u-w-auto']) %}
+
 {% set stat_classes = [
-  'u-text-[5.12rem]',
-  'lg:u-text-[7.12rem]',
+  'u-text-[4.6rem]',
+  'lg:u-text-[6.4rem]',
   'u-font-bold',
   'u-leading-none',
   'u-max-w-xs',

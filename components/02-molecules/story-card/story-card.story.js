@@ -1,5 +1,5 @@
 import template from './story-card.twig';
-import image from './swimmer-coral-reef.jpg';
+import image from './dora-palfi.png';
 import fieldRichText from '../../01-atoms/fields/field--rich-text.twig';
 import paragraphTemplate from '../../01-atoms/text/paragraph.twig';
 
@@ -7,12 +7,12 @@ export default {
   title: 'Molecules/Story Card',
   args: {
     image: image,
-    title: 'Neom - Saudi Arabia',
+    title: 'Dora Palfi',
     body: fieldRichText({
       label_hidden: true,
       items: [{
         content: paragraphTemplate({
-          content: 'Home to kaleidoscopic-colored coral reefs and an abundance of diverse marine life | Islands of NEOM',
+          content: 'I think the biggest thing from Lead2030 has been just the visibility for our organisation; our projects and our mission.',
         }),
       }],
     }),
@@ -34,11 +34,6 @@ export default {
   },
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      description: {
-        component: 'Please note that the Javascript for this component has been written for the Drupal JavaScript API, thus it will function only in the context of a Drupal site.',
-      },
-    },
   },
 };
 

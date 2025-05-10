@@ -1,0 +1,21 @@
+{% if title %}
+  {% include '@atoms/heading/heading.twig' with {
+    level: 5,
+    content: title,
+    classes: heading_classes,
+  } only %}
+{% endif %}
+
+{% if tags %}
+  <ul class="u-inline-flex u-flex-wrap u-gap-4">
+    {% for tag in tags %}
+      <li>
+        {% include '@atoms/tag/tag.twig' with {
+          text: tag,
+          border_colour: 'u-border-ochre',
+          classes: ['u-text-white', 'u-whitespace-nowrap'],
+        } only %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
