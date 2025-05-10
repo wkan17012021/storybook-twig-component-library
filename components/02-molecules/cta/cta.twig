@@ -1,32 +1,82 @@
-{% include '@molecules/section/section-content.twig' with {
-  add_padding_classes: true,
-  sub_container_columns: false,
-  sub_container_classes: ['cta']|merge(sub_container_classes|default([])),
-  content_wrapper_classes: [
+{% set attributes = attributes|default(create_attribute())
+  .addClass([
+    'cta',
+    'u-relative',
+  ])
+  .addClass(classes)
+  .removeClass(remove_classes) %}
+
+{% set wrapper_attributes = wrapper_attributes|default(create_attribute())
+  .addClass([
+    'cta__wrapper',
+    'u-relative',
+    'u-pt-3',
+    'u-pb-4',
+    'u-px-[15px]',
+    'md:u-p-7',
+    'md:u-pt-6',
+    'u-flex',
+    'u-flex-col',
     'u-gap-6',
-    not bg_colour ? 'u-bg-eggshell':bg_colour,
-  ]|merge(content_wrapper_classes|default([])),
-  heading_classes: [
-    'h4',
-    '!u-mb-0',
-    '!u-font-extrabold',
-    'u-text-md'
-  ],
-  body_classes: [
-    'u-text-balance',
+    not bg_colour ? 'u-bg-neutral-grey':bg_colour,
+  ])
+  .addClass(wrapper_classes) %}
+
+{% set image_attributes = image_attributes|default(create_attribute())
+  .addClass('cta__image')
+  .addClass(image_classes)
+  .removeClass(remove_image_classes) %}
+
+{% set content_attributes = content_attributes|default(create_attribute())
+  .addClass([
+    'cta__content',
     'u-font-extrabold',
     'u-text-md',
-  ],
-  remove_body_classes: [
-    'xl:u-max-w-[38rem]',
-    'u-leading-tight',
-    'u-font-semibold',
-    'u-text-sm',
-    'md:u-text-2xl',
-  ],
-  remove_content_wrapper_classes: [
-    'lg:u-p-9',
-    'lg:u-pt-8',
-    'xxl:u-p-0',
-  ]
-} %}
+    text_centre ? 'u-text-center':'',
+  ])
+  .addClass(content_classes)
+  .removeClass(remove_content_classes) %}
+
+{% set footer_attributes = cta_attributes|default(create_attribute())
+  .addClass([
+    'cta__footer',
+    text_centre ? 'u-text-center':'',
+  ])
+  .addClass(footer_classes) %}
+
+<div{{ attributes }}>
+  {% if image %}
+    <div{{ image_attributes }}></div>
+  {% endif %}
+  <div{{ wrapper_attributes }}>
+    {% if title %}
+      <header>
+        {% include '@atoms/heading/heading.twig' with {
+          level: heading_level|default(2),
+          content: title,
+          attributes: create_attribute().addClass([
+            'u-mb-0',
+            'u-font-extrabold',
+            'u-text-4xl',
+            text_centre? 'u-text-center':'',
+          ]).addClass(heading_classes),
+        } only %}
+      </header>
+    {% endif %}
+    <div{{ content_attributes }}>
+      {{ content }}
+    </div>
+    {% if cta_button and cta_button.url and cta_button.content %}
+      <footer{{ footer_attributes }}>
+        {% include '@atoms/link-button/link-button.twig' with {
+          classes: 'u-font-medium',
+          content: cta_button.content,
+          url: cta_button.url,
+          new_window: cta_button.new_window,
+          icons_url: icons_url,
+          type: cta_button.type|default(bg_colour == 'u-bg-ochre'? 'secondary':'primary2'),
+        } only %}
+      </footer>
+    {% endif %}
+  </div>
+</div>
