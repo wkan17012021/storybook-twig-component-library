@@ -1,8 +1,10 @@
+@use "../_tailwind-variables" as tailwind;
+
 // Use breakpoints defined in Tailwind.
 $breakpoints: (
-        sm: $screen-sm,
-        md: $screen-md,
-        lg: $screen-lg,
-        xl: $screen-xl,
-        xxl: $screen-2xl
+        sm: tailwind.$screen-sm,
+        md: tailwind.$screen-md,
+        lg: tailwind.$screen-lg,
+        xl: tailwind.$screen-xl,
+        xxl: tailwind.$screen-2xl
 );

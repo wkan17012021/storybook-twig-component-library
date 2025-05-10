@@ -1,8 +1,13 @@
-@import "tailwind-variables";
+@use "tailwind-variables";
 
 // Import component CSS.
-@import "00-base/*.scss";
-@import "01-atoms/**/*.scss";
-@import "02-molecules/**/*.scss";
-@import "03-organisms/**/*.scss";
-@import "04-layout/*.scss";
+@use "00-base/01-variables" as variables;
+@use "00-base/02-mixins" as mixins;
+@use "00-base/03-base" as base;
+@use "00-base/04-swiper" as swiper;
+@use "01-atoms/form" as form;
+@use "01-atoms/heading" as heading;
+@use "01-atoms/paragraph" as paragraph;
+@use "02-molecules/index" as molecules;
+@use "03-organisms/index" as organisms;
+@use "04-layout/index" as layout;
