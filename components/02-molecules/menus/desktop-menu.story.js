@@ -3,7 +3,7 @@ import menuNav from './desktop-menu-nav.twig';
 import submenu from './desktop-menu-submenu.twig';
 import menuItem from './desktop-menu-item.twig';
 import submenuStory from './desktop-menu-submenu.story.js';
-import './base.css';
+import '../../../../../../modules/contrib/tb_megamenu/dist/base.css';
 import DrupalAttribute from 'drupal-attribute';
 
 submenuStory.args.attributes = new DrupalAttribute().setAttribute('role', 'list').addClass(['tbm-submenu', 'tbm-item-child', '!u-block', '!u-opacity-100']);

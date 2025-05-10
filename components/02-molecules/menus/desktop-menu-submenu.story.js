@@ -4,7 +4,7 @@ import menuRow from './desktop-menu-row.twig';
 import menuColumn from './desktop-menu-column.twig';
 import subnav from './desktop-menu-subnav.twig';
 import {Level2WithLink} from './desktop-menu-item.story.js';
-import './base.css';
+// import '../../../../../../modules/contrib/tb_megamenu/dist/base.css';
 import DrupalAttribute from 'drupal-attribute';
 
 export default {

@@ -1,0 +1,44 @@
+{% set content_text_colour = content_text_colour|default('u-text-black') %}
+{% set bg_colour = bg_colour|default('u-bg-ochre') %}
+{% set common_classes = ['u-font-bold', content_text_colour] %}
+{% set classes = common_classes|merge(classes|default([])) %}
+{% set attributes = attributes|default(create_attribute()).addClass(classes|default([])) %}
+{% set filename = link['#title'] %}
+
+{% set icon %}
+  {% include '@atoms/icon/icon.twig' with {
+    classes: [
+      'icon',
+      'u-text-inherit',
+      'u-fill-current',
+      'u-inline',
+      'u-mr-4',
+      bg_colour
+    ],
+    id: 'download',
+    icons_url: icons_url,
+    alt: 'Download document',
+  } only %}
+{% endset %}
+
+{% set content %}
+  {{ icon }}
+  {{ filename }}
+  {% if file_size %}
+    {% set file_size_span_attributes = create_attribute().addClass('u-ml-2') %}
+    <span{{ file_size_span_attributes }}>({{ file_size }})</span>
+  {% endif %}
+{% endset %}
+
+{% include '@atoms/link/link.twig' with {
+  attributes: attributes,
+  classes: classes|merge([
+    'u-my-2',
+    'u-inline-flex',
+    'u-flex-wrap',
+    'u-items-center',
+  ]),
+  content: content,
+  url: link['#url'].uri|replace({'base:': ''}),
+  remove_classes: ['u-text-burnt-orange'],
+} only %}

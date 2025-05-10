@@ -1,5 +1,3 @@
-{% set attributes = attributes|default(create_attribute())
-  .removeClass('tbm-nav')
-  .addClass('u-flex') %}
+{% set attributes = attributes|default(create_attribute()).removeClass('tbm-nav') %}
 
-{% include '@atoms/lists/ul.twig' %}
+{% include '@atoms/lists/inline-ul.twig' %}

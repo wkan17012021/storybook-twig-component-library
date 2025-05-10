@@ -35,7 +35,7 @@
     'u-py-3',
     'u-px-6',
     'hover:u-underline',
-    'hover:u-text-red',
+    'hover:u-text-burnt-orange',
   ] %}
 {% endif %}
 
@@ -66,7 +66,7 @@
       url: link['url'],
       attributes: link_attributes.addClass(link_classes),
       content: inner_content,
-      remove_classes: 'u-text-red',
+      remove_classes: 'u-text-burnt-orange',
     } only %}
   {% else %}
     <span{{ link['attributes'].addClass('u-cursor-pointer').addClass(link_classes) }}>{{ inner_content }}</span>

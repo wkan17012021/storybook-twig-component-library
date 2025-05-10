@@ -1,0 +1,20 @@
+{% set attributes = attributes|default(create_attribute()).addClass(classes) %}
+
+{% set extra_classes = ['u-mb-6'] %}
+
+{% if attributes.hasClass('align-center') %}
+  {% set extra_classes = extra_classes|merge(['md:u-mx-auto', 'md:u-w-4/5']) %}
+{% elseif attributes.hasClass('align-left') %}
+  {% set extra_classes = extra_classes|merge(['u-float-none', 'md:u-float-left', 'md:u-mr-8', 'md:u-w-1/2']) %}
+{% elseif attributes.hasClass('align-right') %}
+  {% set extra_classes = extra_classes|merge(['u-float-none', 'md:u-float-right', 'md:u-ml-8', 'md:u-w-1/2']) %}
+{% endif %}
+
+{% set attributes = attributes.addClass(extra_classes) %}
+
+{# User filter caption twig if the media has a caption. #}
+{% if theme_hook_original == 'filter_caption' %}
+  {% include '@molecules/media-item/figure.twig' %}
+{% else %}
+  {% include '@molecules/media-item/media-item.twig' %}
+{% endif %}
