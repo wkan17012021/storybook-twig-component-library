@@ -4,11 +4,12 @@ import secondaryMenuTemplate from '../../02-molecules/menus/secondary-menu.twig'
 import searchFormTemplate from '../../02-molecules/search-form/search-form.twig';
 import formElementTemplate from '../../01-atoms/form/form-element.twig';
 import formElementLabelTemplate from '../../01-atoms/form/form-element-label.twig';
-import inputSearchTemplate from '../../01-atoms/form/input--search.twig';
+import inputTemplate from '../../01-atoms/form/input.twig';
 import inputSubmitTemplate from '../../01-atoms/form/input--submit.twig';
 import desktopMenuTemplate from '../../02-molecules/menus/desktop-menu.twig';
-import logo from './Travel Co Logo.png';
+import logo from './logo.svg';
 import desktopMenuStory from '../../02-molecules/menus/desktop-menu.story.js';
+import DrupalAttribute from 'drupal-attribute';
 
 export default {
   title: 'Organisms/Header',
@@ -40,9 +41,12 @@ export default {
           title: 'Search',
           title_display: 'invisible',
         }),
-        children: inputSearchTemplate(),
+        children: inputTemplate({
+          attributes: new DrupalAttribute().setAttribute('type','search'),
+        }),
       }) +
       inputSubmitTemplate({
+        value: 'Search',
         icons_url: import.meta.env.STORYBOOK_ICONS_URL,
       }),
     }),

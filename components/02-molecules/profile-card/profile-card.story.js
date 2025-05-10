@@ -1,6 +1,6 @@
 import cardTemplate from './profile-card.twig';
 import cardOverlayTemplate from './profile-card-overlay.twig';
-import image from './profile-iamge.jpeg';
+import image from './profile-image.jpeg';
 import fieldRichText from '../../01-atoms/fields/field--rich-text.twig';
 import socialLinksStory from '../social-links/social-links.story.js';
 import paragraphTemplate from '../../01-atoms/text/paragraph.twig';

@@ -7,7 +7,7 @@ export default {
   title: 'Molecules/Story Card',
   args: {
     image: image,
-    title: 'Dora Palfi',
+    title: 'Person',
     body: fieldRichText({
       label_hidden: true,
       items: [{
