@@ -1,0 +1,71 @@
+{{ attach_library('oyw/accordion-item') }}
+
+{% set attributes = create_attribute()
+  .addClass(['accordion-item', 'u-mb-4'])
+  .addClass(classes)
+  .removeClass(remove_classes) %}
+
+{% set id = 'accordionItem'~id %}
+
+{% set content_attributes = create_attribute()
+  .setAttribute('id', id)
+  .addClass([
+    'u-hidden',
+    'u-p-4',
+    bg_colour in ['u-bg-dark-blue', 'u-bg-grey-blue'] ? 'u-text-white':''
+  ])
+  .addClass(content_classes)
+  .removeClass(remove_content_classes) %}
+
+{% if icon_id is not defined %}
+  {% set icon_id = 'chevron' %}
+{% endif %}
+
+<div{{ attributes }}>
+  <div class="accordion-item__header">
+    {% embed '@atoms/heading/heading.twig' with {
+      level: 5,
+      content: title,
+      icons_url: icons_url,
+      aria_controls_id: id,
+      classes: 'u-m-0',
+      button_bg_colour: button_bg_colour|default('u-bg-mid-blue'),
+      button_classes: button_classes,
+      remove_button_classes: remove_button_classes,
+      icon_id: icon_id,
+      icon_content: icon_content,
+    } only %}
+      {% block content %}
+        {% include '@atoms/button/button.twig' with {
+          attributes: create_attribute()
+            .setAttribute('aria-expanded', 'false')
+            .setAttribute('aria-controls', aria_controls_id)
+            .addClass([
+              'accordion-item__button',
+              'u-w-full',
+              'u-justify-between',
+              'u-pt-3',
+              'u-pb-3.5',
+              'u-text-left',
+              'u-items-start'
+            ])
+            .addClass(button_classes),
+          remove_classes: remove_button_classes,
+          bg_colour: button_bg_colour,
+          icon_id: icon_id,
+          icons_url: icons_url,
+          icon_content: icon_content,
+          icon_classes: [
+            'u-rotate-90',
+            'u-transition-transform',
+            'u-duration-500',
+          ],
+          content: content,
+        } only %}
+      {% endblock %}
+    {% endembed %}
+  </div>
+  <div{{ content_attributes }}>
+    {{ content }}
+  </div>
+</div>

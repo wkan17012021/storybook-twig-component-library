@@ -10,12 +10,12 @@ export default {
       label_hidden: true,
       items: [{
         content: paragraphTemplate({
-          content: "Throughout Fiji, its culture, food and people epitomize the saying 'Fiji is the way the world should be.'",
+          content: 'I think the biggest thing from Lead2030 has been just the visibility for our organisation; our projects and our mission.',
         }),
       }],
     }),
     source: 'Quote source',
-    source_link: 'https://www.lonelyplanet.com/best-in-travel',
+    source_link: 'https://www.oneyoungworld.com/',
   },
   argTypes: {
     content: {

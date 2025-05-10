@@ -1,5 +1,5 @@
 import template from './video.twig';
-import posterImage from './video-poster.png';
+import posterImage from './video-poster.jpg';
 import {responsiveArgType} from '../../00-base/utils/arg-types-helper.js';
 
 export default {

@@ -1,0 +1,7 @@
+.blockquote {
+  // Stop any strong tags adjusting the font-weight as the quote text is already bold.
+  b,
+  strong {
+    font-weight: inherit;
+  }
+}

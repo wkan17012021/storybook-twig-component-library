@@ -1,0 +1,86 @@
+{% set content %}
+  <div class="u-flex u-gap-y-3 u-flex-col u-pb-4">
+    {% if tagline %}
+      <div>{{ tagline }}</div>
+    {% endif %}
+    {% if email %}
+      <div>
+        <strong>E:</strong>
+        {% include '@atoms/link/link.twig' with {
+          content: email,
+          url: 'mailto:'~email,
+          remove_classes: 'u-text-burnt-orange',
+          classes: 'u-text-white',
+        } %}
+      </div>
+    {% endif %}
+  </div>
+{% endset %}
+
+{% set title %}
+  <span class="u-font-thin"><strong>{{ title }}</strong><br><span>{{ role }}</span></span>
+{% endset %}
+
+{% set icon_content %}
+  {# The plus & minus icons are created with the Tailwind classes below,
+  where the before psuedo element is the vertical line of the plus icon,
+  and the after element is the horizontal line  #}
+  <span{{ create_attribute()
+    .addClass([
+      'icon',
+      'u-relative',
+      'u-w-[26px]',
+      'u-h-[26px]',
+      'u-bg-ochre',
+      'before:u-absolute',
+      'before:u-bg-black',
+      'before:u-top-1/2',
+      'before:u-left-1/2',
+      'before:u-h-[4px]',
+      'before:u-w-[16px]',
+      'before:u-transition-all',
+      'before:u-duration-500',
+      'before:u--translate-x-1/2',
+      'before:u--translate-y-1/2',
+      'after:u-absolute',
+      'after:u-bg-black',
+      'after:u-top-1/2',
+      'after:u-left-1/2',
+      'after:u-h-[16px]',
+      'after:u-w-[4px]',
+      'after:u-transition-all',
+      'after:u-duration-500',
+      'after:u--translate-x-1/2',
+      'after:u--translate-y-1/2',
+    ]) }}></span>
+{% endset %}
+
+{% include '@molecules/accordion-item/accordion-item.twig' with {
+  bg_colour: 'u-bg-grey-blue',
+  classes: [
+    'u-relative',
+    'after:u-absolute',
+    'after:u-bottom-0',
+    'after:u-h-[1px]',
+    'after:u-w-[calc(100%-2rem)]',
+    'after:u-bg-dark-blue',
+    'after:u-mx-4',
+    'last:after:u-content-none',
+  ],
+  content_classes: [
+    'u-py-0',
+    'u-text-sm',
+    'u-font-thin',
+  ],
+  button_classes: [
+    'u-text-white',
+    'u-p-4',
+    'u-font-normal',
+    '[&[aria-expanded=true]_.icon]:before:u--rotate-90',
+    '[&[aria-expanded=true]_.icon]:after:u--rotate-90',
+    '[&[aria-expanded=true]_.icon]:after:u-opacity-0',
+  ],
+  remove_button_classes: ['u-px-3', 'u-py-2', 'u-items-start'],
+  button_bg_colour: 'u-bg-transparent',
+  icon_id: false,
+} %}

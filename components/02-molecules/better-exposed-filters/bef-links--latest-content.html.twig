@@ -1,0 +1,29 @@
+{% for name, value in hiddens %}
+<input type="hidden" name="{{ name }}" value="{{ value }}" />
+{% endfor %}
+<div{{ attributes.removeClass('form-select').addClass('bef-links') }}>
+  {% for child in children %}
+    {% set item = attribute(element, child) %}
+    {% if loop.first %}
+      <ul class="u-flex [&>li:last-child]:after:u-content-none">
+    {% endif %}
+    <li class="u-relative after:u-absolute after:u-right-0 after:u-top-[calc(50%-.4em)] after:u-bg-white after:u-w-[2px] after:u-h-[.8em]">
+      {% include '@atoms/link/link.twig' with {
+        content: item['#title'],
+        url: item['#url']|render,
+        attributes: create_attribute(item['#attributes']).addClass([
+          'u-block',
+          'u-py-4',
+          'u-px-3',
+          'u-text-sm',
+          'u-font-semibold',
+          'hover:u-underline'
+        ]),
+        remove_classes: 'u-text-burnt-orange',
+      } %}
+    </li>
+    {% if loop.last %}
+      </ul>
+    {% endif %}
+  {% endfor %}
+</div>

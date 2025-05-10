@@ -6,12 +6,11 @@
     'u-text-center',
     'u-text-lg',
     'u-font-bold',
-    'u-leading-relaxed',
+    'u-leading-normal',
     'u-mb-6',
     'md:u-text-xl',
     'xl:u-text-left',
-    'xl:u-text-4xl',
-    'xl:u-leading-normal',
+    'xl:u-text-2xl',
     'xl:u-mb-2',
   ])
   .addClass(position_classes)
@@ -28,8 +27,7 @@
 {% set cite_attributes = create_attribute()
   .addClass([
     'u-font-normal',
-    'u-not-italic',
-    'xl:u-text-lg',
+    'xl:u-text-[1.05rem]',
   ])
   .addClass(cite_classes)
   .removeClass(remove_cite_classes)  %}
@@ -49,7 +47,7 @@
         {% embed '@atoms/link/link.twig' with {
           url: source_link,
           new_window: new_window,
-          remove_classes: 'u-text-red',
+          remove_classes: 'u-text-burnt-orange',
           classes: 'u-underline',
           source: source,
         } only %}
