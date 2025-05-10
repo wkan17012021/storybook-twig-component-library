@@ -4,16 +4,18 @@
     'u-my-4',
     'u-mx-2',
     'u-p-4',
-    'u-bg-eggshell',
+    'u-bg-neutral-grey',
   ])
   .removeClass(remove_classes) %}
+{% set level = level|default(4) %}
 
 <div{{ attributes }}>
   {% include '@atoms/heading/heading.twig' with {
-    level: 4,
+    level: level,
     content: title,
     url: url,
     link_attributes: create_attribute().addClass('u-text-black'),
+    remove_classes: ['u-text-burnt-orange'],
   } only %}
   {% include '@atoms/text/paragraph.twig' with {
     content: content,

@@ -1,0 +1,28 @@
+section {
+  margin: 2rem 0;
+
+  // For some organisms, they look better with no margin between them.
+  &:not(.cta-pair):not(.cta-with-image):not(.cta-carousel) {
+    &:first-of-type {
+      margin-bottom: 0;
+    }
+
+    & + & {
+      margin: 0;
+    }
+
+    &:last-of-type {
+      margin-top: 0;
+      // @todo how else to override the rule above (& + &)?
+      margin-bottom: 2rem !important;
+    }
+
+    // No margin if the section is the only element in the block.
+    &:first-of-type:last-of-type {
+      margin-top: 0;
+      margin-bottom: 0 !important;
+    }
+  }
+}
+
+

@@ -3,6 +3,7 @@
 {% set has_overlay = has_overlay ?? false %}
 {% set add_padding_classes = add_padding_classes ?? true %}
 {% set indent_bg = indent_bg ?? false %}
+{% set indent_bg_md_only = indent_bg_md_only ?? false %}
 {% set indent_bg_2xl = indent_bg_2xl ?? false %}
 {% set content_text_colour = content_text_colour|default('u-text-black') %}
 {% set bg_colour = bg_colour|default('u-bg-white') %}
@@ -38,6 +39,14 @@
     not indent_bg_2xl ? 'xl:after:u-content-none':'',
   ]) %}
 
+  {# The indent only applies to MD screens, so reset the above. #}
+  {% if indent_bg_md_only %}
+    {% set container_classes = container_classes|merge([
+      'lg:u-static',
+      'lg:after:u-content-none',
+    ]) %}
+  {% endif %}
+
   {% if indent_bg_2xl %}
     {% set classes = classes|merge([
       '2xl:u-relative',
@@ -52,6 +61,8 @@
 {% endif %}
 
 <{{ tag }}{{ attributes.addClass(classes).removeClass(remove_classes) }}>
+{{ title_prefix }}
+{{ title_suffix }}
 <div{{ create_attribute().addClass(container_classes).removeClass(remove_container_classes) }}>
   {% block section_content %}
     {% include '@molecules/section/section-content.twig' %}

@@ -1,7 +1,7 @@
 import template from './section.twig';
 import profileCardTemplate from '../profile-card/profile-card.twig';
-import profileImage1 from '../../02-molecules/profile-card/rock-climber.jpeg';
-import profileImage2 from '../../02-molecules/profile-card/profile-image.jpeg';
+import profileImage1 from '../../02-molecules/profile-card/dora-palfi.png';
+import profileImage2 from '../../02-molecules/profile-card/profile-image.png';
 import {bgColourArgType} from '../../00-base/utils/arg-types-helper.js';
 import profileCardStory from '../profile-card/profile-card.story.js';
 
@@ -118,12 +118,12 @@ export const Section = Template.bind({});
 export const SectionWithDefaultIndentedBackground = Template.bind({});
 SectionWithDefaultIndentedBackground.args = {
   indent_bg: true,
-  bg_colour: 'u-bg-orange',
+  bg_colour: 'u-bg-ochre',
 };
 
 export const SectionWithLeftIndentedBackground = Template.bind({});
 SectionWithLeftIndentedBackground.args = {
   indent_bg: true,
   indent_bg_side: 'left',
-  bg_colour: 'u-bg-orange',
+  bg_colour: 'u-bg-ochre',
 };

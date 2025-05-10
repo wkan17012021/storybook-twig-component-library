@@ -54,7 +54,7 @@
     'md:u-pt-6',
     'lg:u-p-9',
     'lg:u-pt-8',
-    'xxl:u-p-0',
+    '2xl:u-px-0',
   ]) %}
 {% endif %}
 
@@ -62,9 +62,11 @@
   {% set content_classes = content_classes|merge([
     'u-flex',
     'u-flex-col',
+    'sm:u-flex-row',
+    'sm:u-flex-wrap',
+    'xl:u-flex-nowrap',
     'u-gap-7',
     'md:u-gap-8',
-    'md:u-flex-row',
   ]) %}
 {% endif %}
 
@@ -113,6 +115,10 @@
   <div{{ create_attribute().addClass(content_wrapper_classes).removeClass(remove_content_wrapper_classes) }}>
     {% if title or body %}
       <header{{ create_attribute().addClass(header_classes).removeClass(remove_header_classes) }}>
+        {% if heading_prefix %}
+          {{ heading_prefix }}
+        {% endif %}
+
         {% if title %}
           {% include '@atoms/heading/heading.twig' with {
             classes: heading_classes,
@@ -133,13 +139,13 @@
 
     {% if content is defined and content is not empty %}
       {% block content %}
-        <div{{ create_attribute().addClass(content_classes) }}>
+        <div{{ create_attribute().addClass(content_classes).removeClass(remove_content_classes) }}>
           {{ content }}
         </div>
       {% endblock %}
     {% endif %}
 
-    {% if block('footer') is defined or (cta_button and cta_button.url and cta_button.content) %}
+    {% if (footer is defined and footer is not empty) or (cta_button and cta_button.url and cta_button.content) %}
       <footer{{ create_attribute().addClass(footer_classes) }}>
         {% block footer %}
           {% if cta_button and cta_button.url and cta_button.content %}
@@ -147,7 +153,7 @@
               content: cta_button.content,
               url: cta_button.url,
               new_window: cta_button.new_window,
-              type: cta_button.type,
+              type: bg_colour == 'u-bg-ochre'? 'secondary':'primary2',
               icons_url: icons_url,
             } only %}
           {% endif %}

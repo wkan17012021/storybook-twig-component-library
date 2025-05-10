@@ -1,0 +1,48 @@
+@import "../../tailwind-variables";
+
+// Apply these styles to:
+// 1) the rich text field on the frontend
+// 2) the CKEditor in the node edit form
+// 3) the CKEditor in the Layout Builder
+// 4) Webform blocks
+.rich-text,
+.ck-editor,
+#layout-builder-modal .ck-editor,
+.block.webform {
+  ul, ol {
+    @apply u-mb-4 u-pl-[2.2rem];
+
+    li {
+      @apply u-mb-1.5;
+    }
+  }
+
+  ul {
+    @apply u-list-disc;
+  }
+
+  ol {
+    @apply u-list-decimal;
+  }
+
+  a {
+    &:not(.oyw-link-button) {
+      @apply u-border-b-[1px] u-border-burnt-orange u-text-burnt-orange visited:u-border-white visited:u-text-grey-blue;
+    }
+
+    &.oyw-link-button {
+      @apply u-inline-block u-px-3 u-py-2 u-text-sm u-bg-ochre u-text-black u-no-underline hover:u-bg-burnt-orange hover:u-no-underline;
+    }
+  }
+
+  // Stop any strong tags nested in rich text headings from overriding the font weight of the heading.
+  @for $i from 1 through 6 {
+    h#{$i},
+    .h#{$i} {
+      b,
+      strong {
+        font-weight: inherit;
+      }
+    }
+  }
+}
