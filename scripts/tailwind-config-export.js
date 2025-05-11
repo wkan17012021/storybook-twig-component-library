@@ -2,7 +2,7 @@ import _ from 'lodash';
 import path from 'path';
 import fs from 'fs';
 import writeYamlFile from 'write-yaml-file';
-import tailwindConfig from './../tailwind.config.js';
+import tailwindConfig from '../tailwind.config.js';
 
 
 const ThemeBreakpoints = () => {
@@ -13,11 +13,11 @@ const ThemeBreakpoints = () => {
 
   const BreakpointsYmlPath = path.join(
     process.cwd(),
-    'oyw.breakpoints.yml',
+    'mytheme.breakpoints.yml',
   );
 
   const BreakpointsYmlExport = {
-    'oyw.minimum': {
+    'mytheme.minimum': {
       label: 'minimum',
       mediaQuery: '',
       weight: 0,
@@ -26,7 +26,7 @@ const ThemeBreakpoints = () => {
   };
 
   _.forEach(tailwindConfig.theme.screens, (value, key) => {
-    BreakpointsYmlExport[`oyw.${key}`] = {
+    BreakpointsYmlExport[`mytheme.${key}`] = {
       label: key,
       mediaQuery: `all and (min-width:${value})`,
       weight: 0,
