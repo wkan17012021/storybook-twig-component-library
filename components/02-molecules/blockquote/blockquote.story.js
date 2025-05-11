@@ -15,13 +15,13 @@ export default {
         {
           content: paragraphTemplate({
             content:
-              "I think the biggest thing from Lead2030 has been just the visibility for our organisation; our projects and our mission.",
+              "The real voyage of discovery consists not in seeking new landscapes, but in having new eyes..",
           }),
         },
       ],
     }),
-    source: "Quote source",
-    source_link: "https://www.google.com/",
+    source: "Marcel Proust",
+    source_link: "https://www.shutterfly.com/ideas/travel-quotes/",
   },
   argTypes: {
     content: {

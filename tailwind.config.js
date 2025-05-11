@@ -7,18 +7,18 @@ const Config = {
     },
     extend: {
       colors: {
-        "mid-blue": "#2a6fdb",
-        "light-blue": "#6592fd",
-        green: "#58b368",
-        red: "#e74645",
-        magenta: "#8a00d4",
-        orange: "#fb7756",
-        "grey-blue": "#2c698d",
-        "dark-blue": "#292a73",
-        eggshell: "#f1e8e6",
+        "mid-blue": "#3b82f6",
+        "light-blue": "#38bdf8",
+        green: "#22c55e",
+        red: "#dc2626",
+        magenta: "#d946ef",
+        orange: "#f97316",
+        "grey-blue": "#334155",
+        "dark-blue": "#1e3a8a",
+        eggshell: "#ffe4e6",
         white: "#ffffff",
         black: "#000000",
-        "burnt-orange": "#cc5500",
+        "burnt-orange": "#9a3412",
       },
       // Font size is relative to the font size set on the body with typi as a percentage.
       fontSize: {

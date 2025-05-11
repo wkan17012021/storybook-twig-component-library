@@ -5,7 +5,7 @@ import { responsiveArgType } from "../../00-base/utils/arg-types-helper.js";
 export default {
   title: "Atoms/Video",
   args: {
-    src: "https://www.google.com/sites/default/files/video-banner/Website-Promo.mp4",
+    src: "https://assets.mixkit.co/videos/40091/40091-720.mp4",
     poster: posterImage,
   },
   argTypes: {

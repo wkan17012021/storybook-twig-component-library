@@ -2,7 +2,8 @@
 
 /** Automatically generated from tailwind.config.js — please do not edit. */
 
-.rich-text ul, .rich-text ol,
+.rich-text ul,
+.rich-text ol,
 .ck-editor ul,
 .ck-editor ol,
 #layout-builder-modal .ck-editor ul,
@@ -15,7 +16,8 @@
   /* Equivalent to u-pl-[2.2rem] */
 }
 
-.rich-text ul li, .rich-text ol li,
+.rich-text ul li,
+.rich-text ol li,
 .ck-editor ul li,
 .ck-editor ol li,
 #layout-builder-modal .ck-editor ul li,
@@ -73,7 +75,7 @@
   font-size: 0.875rem;
   /* Equivalent to u-text-sm */
   background-color: #f1e8e6;
-  /* Equivalent to u-bg-ochre */
+  /* Equivalent to u-bg-orange */
   color: #000000;
   /* Equivalent to u-text-black */
   text-decoration: none;

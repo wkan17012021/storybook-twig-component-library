@@ -11,7 +11,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'Form inputs.',
+        component: 'Form inputs. To be fixed in the future',
       },
     },
   },
@@ -30,6 +30,7 @@ Search.args = {
 
 export const Password = Template.bind({});
 Password.args = {
+  input_type: 'password',
   attributes: new DrupalAttribute()
     .setAttribute('type', 'password')
     .setAttribute('value', 'Password input field'),
@@ -37,6 +38,7 @@ Password.args = {
 
 export const Checkbox = Template.bind({});
 Checkbox.args = {
+  input_type: 'checkbox',
   attributes: new DrupalAttribute()
     .setAttribute('type', 'checkbox')
     .setAttribute('value', '1'),

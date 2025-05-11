@@ -1,4 +1,5 @@
-{% set input_type = input_type|default(attributes.toArray()['type']) %}
+{# {% set attributes = attributes|default(create_attribute()) %} #}
+{% set input_type =' input_type|default(attributes.toArray()['type']|default('text'))' %}
 {% set focus_visible_classes = [
   'focus-visible:u-outline',
   'focus-visible:u-outline-[revert]',
@@ -69,5 +70,5 @@
   and thus we avoid having 2 colour highlights #}
   {% set classes = classes|merge(['u-outline', 'u-outline-2', 'u-outline-offset-1', 'u-outline-burnt-orange']) %}
 {% endif %}
-
+{{attributes}}
 <input{{ attributes.addClass(classes) }}/>{{ children }}

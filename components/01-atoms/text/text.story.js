@@ -5,7 +5,8 @@ export default {
   title: 'Atoms/Text',
   args: {
     content:
-      `We believe the best outcomes occur when people are in control of their health, with information they understand. We have signed up to the Health Charter by Public Health England. Using a technique called “sorting important’ we work with people to identify ways they can balance being happy and content with being healthy and safe.`,
+      `A travel tracker to capture every awesome moment!
+Keeping your phone in your pocket and your eyes on the world. Share it with everyone — from your roommate to your soulmate — or keep it to yourself.`,
   },
   argTypes: {
     content: {
