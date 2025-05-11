@@ -12,12 +12,12 @@ const ThemeBreakpoints = () => {
   });
 
   const BreakpointsYmlPath = path.join(
-      process.cwd(),
-      'myTheme.breakpoints.yml',
+    process.cwd(),
+    'oyw.breakpoints.yml',
   );
 
   const BreakpointsYmlExport = {
-    'myTheme.minimum': {
+    'oyw.minimum': {
       label: 'minimum',
       mediaQuery: '',
       weight: 0,
@@ -26,7 +26,7 @@ const ThemeBreakpoints = () => {
   };
 
   _.forEach(tailwindConfig.theme.screens, (value, key) => {
-    BreakpointsYmlExport[`myTheme.${key}`] = {
+    BreakpointsYmlExport[`oyw.${key}`] = {
       label: key,
       mediaQuery: `all and (min-width:${value})`,
       weight: 0,
@@ -40,8 +40,8 @@ const ThemeBreakpoints = () => {
 const CssVariables = () => {
   // Destination.
   const sassOutputPath = path.join(
-      process.cwd(),
-      'components/_tailwind-variables.scss',
+    process.cwd(),
+    'components/_tailwind-variables.scss',
   );
 
   // If the file exists, delete it.
@@ -74,8 +74,8 @@ const CssVariables = () => {
         const variableName = `--${config.css[type].name}-${key}`;
         const variableValue = `${config.css[type].config[key]}`;
         const line = `${variableName.replace(
-            /[./]/gim,
-            '\\/',
+          /[./]/gim,
+          '\\/',
         )}: ${variableValue};\n`;
 
         fs.appendFileSync(sassOutputPath, line, err => {
@@ -96,8 +96,8 @@ const CssVariables = () => {
         const variableName = `$${config.sass[type].name}-${key}`;
         const variableValue = `${config.sass[type].config[key]}`;
         const line = `${variableName.replace(
-            /[./]/gim,
-            '\\/',
+          /[./]/gim,
+          '\\/',
         )}: ${variableValue};\n`;
 
         fs.appendFileSync(sassOutputPath, line, err => {
