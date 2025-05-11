@@ -1,4 +1,6 @@
 @use "../_tailwind-variables" as tailwind;
+@use "02-mixins" as mixins;
+
 // Swiper.
 :root {
   --swiper-pagination-bullet-size: 14px;
@@ -15,7 +17,7 @@ section.u-bg-ochre {
 
 section.u-bg-dark-blue {
   --swiper-pagination-bullet-inactive-color: #fff;
-  @include breakpoint('xl') {
+  @include mixins.breakpoint('xl') {
     --swiper-pagination-bullet-inactive-color: #{tailwind.$color-orange};
   }
 }

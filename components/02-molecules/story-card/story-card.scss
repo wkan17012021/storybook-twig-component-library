@@ -1,3 +1,5 @@
+@use "../../00-base/02-mixins" as mixins;
+
 @mixin active-story-card() {
   .story-card__body {
     top: 0;
@@ -19,7 +21,7 @@
 }
 
 // Card content shows on hover for LG+ screens.
-@include breakpoint('lg') {
+@include mixins.breakpoint('lg') {
   .story-card:hover {
     @include active-story-card;
   }

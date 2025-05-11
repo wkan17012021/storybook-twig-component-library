@@ -1,12 +1,13 @@
+@use "sass:map";
+@use "./01-variables" as vars;
+
 // Breakpoints mixin.
 @mixin breakpoint($size) {
-  $breakpoint: map-get($breakpoints, $size);
+  $breakpoint: map.get(vars.$breakpoints, $size);
 
   @if $breakpoint {
-    @media (min-width: #{$breakpoint}) {
+    @media (min-width: $breakpoint) {
       @content;
     }
-  } @else {
-    @warn "Breakpoint #{$size} not found in the \$breakpoints map.";
   }
 }

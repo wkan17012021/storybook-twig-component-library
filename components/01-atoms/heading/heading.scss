@@ -1,3 +1,5 @@
+@use "../../00-base/02-mixins" as mixins;
+
 h1,
 .h1 {
   // font-size: 28px
@@ -52,7 +54,7 @@ h6,
   font-weight: 600;
 }
 
-@include breakpoint('md') {
+@include mixins.breakpoint('md') {
   h1,
   .h1 {
     // font-size: 51px

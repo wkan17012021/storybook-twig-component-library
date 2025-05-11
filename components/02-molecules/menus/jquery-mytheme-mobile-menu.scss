@@ -8,7 +8,7 @@
 
  #mythemeMobileMenuToggle.open .toggle-line {
   &:first-child {
-    @apply u-rotate-45 u-translate-y-0;
+    transform: rotate(45deg) translateY(0); /* Equivalent to u-rotate-45 u-translate-y-0 */
   }
 
   &:nth-child(2) {
@@ -16,7 +16,7 @@
   }
 
   &:last-child {
-    @apply -u-rotate-45 u-translate-y-0;
+    transform: rotate(-45deg) translateY(0); /* Equivalent to -u-rotate-45 u-translate-y-0 */
   }
 }
 
@@ -48,11 +48,12 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    @apply u-transition-all;
+    transition: all 0.2s ease-in-out; /* Equivalent to u-transition-all */
   }
 }
 
 #mythemeMobileMenu .mobile-menu li.has-child.active > a::after {
-  @apply u-rotate-90 u-transition-all;
+  transform: rotate(90deg); /* Equivalent to u-rotate-90 */
+  transition: all 0.2s ease-in-out; /* Equivalent to u-transition-all */
 }
 
